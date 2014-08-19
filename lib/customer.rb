@@ -4,7 +4,7 @@ class Customer
               :last_name,
               :created_at,
               :updated_at
-              
+
   def initialize(attributes = {})
     @id         = attributes[:id]
     @first_name = attributes[:first_name]
