@@ -1,5 +1,6 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-lib_directory = File.expand_path('../../lib', __FILE__)
-$LOAD_PATH.unshift lib_directory
+Dir["./lib/*.rb"].each { |file| require "#{file}" }
+
+#lib_directory = File.expand_path('../lib', __FILE__)
