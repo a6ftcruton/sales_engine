@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/customer'
+require_relative 'test_helper'
 
 class CustomerTest < Minitest::Test
 
