@@ -12,4 +12,10 @@ class ItemRepo
     @csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
     @collection = csv.map { |row| Item.new(row) }
   end
+
+  def find_by_merchant_id(id)
+    collection.find do |item|
+      item.merchant_id == id
+    end
+  end
 end

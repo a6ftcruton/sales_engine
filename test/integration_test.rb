@@ -10,6 +10,13 @@ class IntegrationTest < Minitest::Test
     engine = SalesEngine.new
     repo = MerchantRepo.new(engine)
     merchant = Merchant.new({:id => 1}, repo)
-    assert_equal "Joey", merchant.invoices("1")
+    assert_equal "29", merchant.invoices("1").id
+  end
+
+  def test_relationship_between_merchant_and_items
+    engine = SalesEngine.new
+    repo = MerchantRepo.new(engine)
+    merchant = Merchant.new({:id => 1}, repo)
+    assert_equal "1", merchant.items("1").id
   end
 end

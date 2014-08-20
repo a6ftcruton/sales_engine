@@ -7,16 +7,20 @@ class MerchantRepo
 
   attr_reader :csv,
               :collection
-              :salesengine
+              :sales_engine
 
   def initialize(engine)
-    @csv = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Merchant.new(row, self) }
-    @salesengine = engine
+    @csv          = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
+    @collection   = csv.map { |row| Merchant.new(row, self) }
+    @sales_engine = engine
   end
 
 
   def find_invoices_by_merchant_id(id)
-    @salesengine.find_invoices_by_merchant_id(id)
+    @sales_engine.find_invoices_by_merchant_id(id)
+  end
+
+  def find_items_by_merchant_id(id)
+    @sales_engine.find_items_by_merchant_id(id)
   end
 end

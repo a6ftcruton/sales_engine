@@ -13,7 +13,7 @@ class InvoiceRepo
     @collection = csv.map { |row| Invoice.new(row) }
   end
 
-  def find_all_by_merchant_id(id)
+  def find_by_merchant_id(id)
     collection.find do |invoice|
       invoice.merchant_id == id
     end
