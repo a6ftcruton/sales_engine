@@ -17,12 +17,16 @@ class InvoiceItemTest < Minitest::Test
   end
 
   def test_it_can_call_quantity_method
-    invoice_item = InvoiceItem.new(attributes)
+    engine = SalesEngine.new
+    repo = InvoiceItemRepo.new(engine)
+    invoice_item = InvoiceItem.new(attributes, repo)
     assert invoice_item.respond_to?(:quantity)
   end
 
   def test_it_stores_unit_price
-    invoice_item = InvoiceItem.new(attributes)
+    engine = SalesEngine.new
+    repo = InvoiceItemRepo.new(engine)
+    invoice_item = InvoiceItem.new(attributes, repo)
     assert_equal 13655, invoice_item.unit_price
   end
 

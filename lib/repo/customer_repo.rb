@@ -6,11 +6,13 @@ class CustomerRepo
   include ListSearch
 
   attr_reader :csv,
-              :collection
+              :collection,
+              :sales_engine
 
-  def initialize
+  def initialize(engine)
     @csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Customer.new(row) }
+    @collection = csv.map { |row| Customer.new(row, self) }
+    @sales_engine = engine
   end
 
   def find_by_last_name(last_name)

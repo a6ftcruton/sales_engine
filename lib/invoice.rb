@@ -6,13 +6,14 @@ class Invoice
               :created_at,
               :updated_at
 
-  def initialize(attributes={})
+  def initialize(attributes={}, repo)
     @id            = attributes[:id]
     @customer_id   = attributes[:customer_id]
     @merchant_id   = attributes[:merchant_id]
     @status        = attributes[:status]
     @created_at    = attributes[:created_at]
     @updated_at    = attributes[:updated_at]
+    @invoice_repo  = repo
   end
 
 
