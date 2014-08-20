@@ -20,8 +20,8 @@ class SalesEngine
 
   def initialize
       @merchant_repo = MerchantRepo.new(self)
-      @invoice_repo  = InvoiceRepo.new
-      @item_repo     = ItemRepo.new
+      @invoice_repo  = InvoiceRepo.new(self)
+      @item_repo     = ItemRepo.new(self)
   end
 
   def find_invoices_by_merchant_id(id)

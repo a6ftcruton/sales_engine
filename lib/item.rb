@@ -7,7 +7,7 @@ class Item
               :created_at,
               :updated_at
 
-  def initialize(attributes = {})
+  def initialize(attributes = {}, repo)
     @id          = attributes[:id]
     @name        = attributes[:name]
     @description = attributes[:description]
@@ -15,5 +15,6 @@ class Item
     @merchant_id = attributes[:merchant_id]
     @created_at  = attributes[:created_at]
     @updated_at  = attributes[:updated_at]
+    @item_repo   = repo
   end
 end

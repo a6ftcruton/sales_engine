@@ -14,17 +14,23 @@ class ItemsTest < Minitest::Test
   end
 
   def test_it_stores_item_info_id_number
-    item = Item.new(attributes)
+    engine = SalesEngine.new
+    repo = ItemRepo.new(engine)
+    item = Item.new(attributes, repo)
     assert_equal 1, item.id
   end
 
   def test_it_stores_merchant_id_for_item
-    item = Item.new(attributes)
+    engine = SalesEngine.new
+    repo = ItemRepo.new(engine)
+    item = Item.new(attributes, repo)
     assert_equal 1, item.merchant_id
   end
 
   def test_it_logs_an_updated_at_time
-    item = Item.new(attributes)
+    engine = SalesEngine.new
+    repo = ItemRepo.new(engine)
+    item = Item.new(attributes, repo)
     assert item.respond_to?(:updated_at)
   end
 end

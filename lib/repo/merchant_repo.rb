@@ -11,7 +11,7 @@ class MerchantRepo
 
   def initialize(engine)
     @csv          = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
-    @collection   = csv.map { |row| Merchant.new(row, self) }
+    @collection   = csv.map { |row| Merchant.new(row) }
     @sales_engine = engine
   end
 

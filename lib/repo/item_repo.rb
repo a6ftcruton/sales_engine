@@ -6,11 +6,13 @@ class ItemRepo
   include ListSearch
 
   attr_reader :csv,
-              :collection
+              :collection,
+              :sales_engine
 
-  def initialize
+  def initialize(engine)
     @csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Item.new(row) }
+    @collection = csv.map { |row| Item.new(row, self) }
+    @sales_engine = engine
   end
 
   def find_by_merchant_id(id)
