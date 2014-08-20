@@ -34,13 +34,28 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def test_it_finds_by_last_name
+    customer = Customer.new(first_name: "Joey", last_name: "Ondricka", id: "1", updated_at: "2012-03-27 14:54:09 UTC", created_at: "2012-03-27 14:54:09 UTC")
     customer_repo = CustomerRepo.new
-    assert_equal 1, customer_repo.find_by_last_name("Ondricka").count
+    assert_equal customer, customer_repo.find_by_last_name("Ondricka")
   end
 
   def test_it_finds_by_first_name
+    customer = Customer.new(first_name: "Joey", last_name: "Ondricka", id: "1", updated_at: "2012-03-27 14:54:09 UTC", created_at: "2012-03-27 14:54:09 UTC")
     customer_repo = CustomerRepo.new
-    p customer_repo.find_by_first_name("Dejon")
-    assert_equal 1, customer_repo.find_by_first_name("Dejon").count
+    assert_equal customer, customer_repo.find_by_first_name("Joey")
+  end
+
+  def test_it_finds_all_by_first_name
+    skip
+    customer = CustomerRepo.new
+    collection = customer_repo.collection
+    assert_equal "Joey", customer.find_all_by_last_name("Joey")
+  end
+
+  def test_it_finds_all_by_last_name
+    skip
+    customer = CustomerRepo.new
+    collection = customer_repo.collection
+    assert_equal "Nader", customer.find_all_by_last_name("Nader")
   end
 end

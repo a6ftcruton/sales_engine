@@ -12,4 +12,9 @@ class Customer
     @created_at = attributes[:created_at]
     @updated_at = attributes[:updated_at]
   end
+
+  def ==(attributes)
+    last_name == attributes.last_name
+    first_name == attributes.first_name
+  end
 end
