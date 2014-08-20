@@ -1,5 +1,5 @@
 require 'csv'
-require_relative '../customer'
+require_relative '../transaction'
 require_relative '../list_search'
 
 class TransactionRepo

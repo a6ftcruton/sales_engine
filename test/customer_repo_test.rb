@@ -48,14 +48,14 @@ class CustomerRepoTest < Minitest::Test
   def test_it_finds_all_by_first_name
     skip
     customer = CustomerRepo.new
-    collection = customer_repo.collection
+    collection = customer.collection
     assert_equal "Joey", customer.find_all_by_last_name("Joey")
   end
 
   def test_it_finds_all_by_last_name
     skip
     customer = CustomerRepo.new
-    collection = customer_repo.collection
+    collection = customer.collection
     assert_equal "Nader", customer.find_all_by_last_name("Nader")
   end
 end
