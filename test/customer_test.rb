@@ -13,12 +13,16 @@ class CustomerTest < Minitest::Test
   end
 
   def test_it_stores_id
-    customer = Customer.new(attributes)
+    engine = SalesEngine.new
+    repo = CustomerRepo.new(engine)
+    customer = Customer.new(attributes, repo)
     assert_equal 1, customer.id
   end
 
   def test_it_stores_first_name
-    customer = Customer.new(attributes)
+    engine = SalesEngine.new
+    repo = CustomerRepo.new(engine)
+    customer = Customer.new(attributes, repo)
     assert_equal "Jerde", customer.first_name
   end
 end

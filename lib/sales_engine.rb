@@ -14,14 +14,20 @@ require_relative './repo/merchant_repo'
 require_relative './repo/transaction_repo'
 
 class SalesEngine
-    attr_reader :merchant_repo,
-                :invoice_repo,
-                :item_repo
+  attr_reader :customer_repo,
+              :invoice_item_repo,
+              :invoice_repo,
+              :item_repo,
+              :merchant_repo,
+              :transaction_repo
 
   def initialize
-      @merchant_repo = MerchantRepo.new(self)
-      @invoice_repo  = InvoiceRepo.new(self)
-      @item_repo     = ItemRepo.new(self)
+    @customer_repo     = CustomerRepo.new(self)
+    @invoice_item_repo = InvoiceItemRepo.new(self)
+    @invoice_repo      = InvoiceRepo.new(self)
+    @item_repo         = ItemRepo.new(self)
+    @merchant_repo     = MerchantRepo.new(self)
+    @transaction_repo  = TransactionRepo.new(self)
   end
 
   def find_invoices_by_merchant_id(id)

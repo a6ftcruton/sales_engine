@@ -8,7 +8,7 @@ class TransactionRepo
   attr_reader :csv,
               :collection
 
-  def initialize
+  def initialize(engine)
     @csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
     @collection = csv.map { |row| Transaction.new(row) }
   end

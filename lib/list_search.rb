@@ -8,9 +8,9 @@ module ListSearch
     instance.sample
   end
 
-  def find_by(criteria = {})
-    search_key = criteria.keys.first
-    search_value = criteria.values.first
-    collection.find { |record| record.public_send(search_key) == search_value}
+  def find_by(criteria)
+    attribute = criteria.keys.first
+    value     = criteria.values.first
+    collection.find { |record| record.send(attribute).downcase == value.downcase }
   end
 end
