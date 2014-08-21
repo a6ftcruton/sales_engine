@@ -14,23 +14,17 @@ class TransactionTest < Minitest::Test
   end
 
   def test_it_can_store_attribute_id
-    engine = SalesEngine.new
-    repo  = TransactionRepo.new(engine)
-    trans = Transaction.new(attributes, repo)
+    trans = Transaction.new(nil, attributes)
     assert_equal 1, trans.id
   end
 
   def test_it_can_store_a_credit_card_number
-    engine = SalesEngine.new
-    repo  = TransactionRepo.new(engine)
-    trans = Transaction.new(attributes, repo)
+    trans = Transaction.new(nil, attributes)
     assert_equal "5555-5555-5555-5555", trans.credit_card_number
   end
 
   def test_it_can_store_a_created_at_date
-    engine = SalesEngine.new
-    repo  = TransactionRepo.new(engine)
-    trans = Transaction.new(attributes)
+    trans = Transaction.new(nil, attributes)
     assert trans.respond_to?(:created_at)
   end
 end

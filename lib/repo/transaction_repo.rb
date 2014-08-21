@@ -5,11 +5,9 @@ require_relative '../list_search'
 class TransactionRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection
+  attr_reader :collection
 
-  def initialize(engine)
-    @csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Transaction.new(row) }
+  def initialize(engine, transaction_data)
+    @collection = transaction_data.map { |row| Transaction.new(self, row) }
   end
 end
