@@ -7,7 +7,7 @@ class Item
               :created_at,
               :updated_at
 
-  def initialize(attributes = {}, repo = nil)
+  def initialize(repo, attributes = {})
     @id          = attributes[:id].to_i
     @name        = attributes[:name]
     @description = attributes[:description]

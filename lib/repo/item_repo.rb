@@ -5,13 +5,11 @@ require_relative '../list_search'
 class ItemRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection,
+  attr_reader :collection,
               :sales_engine
 
-  def initialize(engine)
-    @csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Item.new(row, self) }
+  def initialize(engine, item_information)
+    @collection = item_information.map { |row| Item.new(self, row) }
     @sales_engine = engine
   end
 
