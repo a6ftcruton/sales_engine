@@ -13,9 +13,8 @@ class Customer
     @updated_at    = attributes[:updated_at]
     @customer_repo = repo
   end
-  #
-  # def ==(attributes)
-  #   last_name == attributes.last_name
-  #   first_name == attributes.first_name
-  # end
+
+  def invoices
+    @customer_repo.find_invoices_by_customer_id(id)
+  end
 end

@@ -30,13 +30,23 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_merchant_and_items
-    attributes = [{:id => 1}]
+    attributes = [{:id => "1"}]
     engine = SalesEngine.new
     repo = MerchantRepo.new(engine, attributes)
     items = repo.collection.first.items
     assert_equal 15, items.count
     items.each do |items|
     assert_equal 1, items.merchant_id
+    end
+  end
+
+  def test_relationship_between_customers_and_invoices
+    attributes = [{:id => "1"}]
+    repo = SalesEngine.new.customer_repo
+    invoices = repo.collection.first.invoices
+    assert_equal 8, invoices.count
+    invoices.each do |invoice|
+      assert_equal 1, invoice.customer_id
     end
   end
 end

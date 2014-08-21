@@ -32,4 +32,8 @@ class CustomerRepo
       customer.last_name == name
     end
   end
+
+  def find_invoices_by_customer_id(id)
+    sales_engine.find_invoices_by_customer_id(id)
+  end
 end
