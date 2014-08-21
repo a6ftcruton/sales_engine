@@ -6,7 +6,7 @@ class InvoiceItemRepo
   include ListSearch
 
   attr_reader :collection,
-              :invoice_item_repo
+              :sales_engine
 
   def initialize(engine, invoice_items_data)
     @collection   = invoice_items_data.map { |row| InvoiceItem.new(self, row) }

@@ -2,10 +2,10 @@ class Merchant
   attr_reader :id,
               :name,
               :created_at,
-              :updated_at
+              :updated_at,
               :merchant_repo
 
-  def initialize(attributes={}, repo)
+  def initialize(repo, attributes={})
     @id            = attributes[:id].to_i
     @name          = attributes[:name]
     @created_at    = attributes[:created_at]
