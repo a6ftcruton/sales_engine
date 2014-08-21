@@ -16,16 +16,12 @@ class InvoiceTest < Minitest::Test
   end
 
   def test_it_stores_merchant_id
-    engine = SalesEngine.new
-    repo = InvoiceRepo.new(engine)
-    invoice = Invoice.new(attributes, repo)
+    invoice = Invoice.new(nil, attributes)
     assert_equal 26, invoice.merchant_id
   end
 
   def test_it_stores_status
-    engine = SalesEngine.new
-    repo = InvoiceRepo.new(engine)
-    invoice = Invoice.new(attributes, repo)
+    invoice = Invoice.new(nil, attributes)
     assert invoice.respond_to?(:status)
   end
 
