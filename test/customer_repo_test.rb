@@ -35,39 +35,23 @@ class CustomerRepoTest < Minitest::Test
     assert_equal 1000, repo.all(collection).count
   end
 
-  def test_it_returns_a_random_row_object
-    collection = repo.collection
-    first_result = repo.random(collection)
-    second_result = repo.random(collection)
-    refute_equal first_result, second_result
-  end
-
   def test_it_finds_by_last_name
-    repo   = SalesEngine.new.customer_repo
     result = repo.find_by_last_name("Schroeder")
-    # customer = Customer.new(attributes, repo)
-    # customer = Customer.new(first_name: "Joey", last_name: "Ondricka", id: "1", updated_at: "2012-03-27 14:54:09 UTC", created_at: "2012-03-27 14:54:09 UTC", repo)
     assert_equal "Schroeder", result.last_name
   end
 
-  # def test_it_finds_by_first_name
-  #   engine = SalesEngine.new
-  #   customer = Customer.new(first_name: "Joey", last_name: "Ondricka", id: "1", updated_at: "2012-03-27 14:54:09 UTC", created_at: "2012-03-27 14:54:09 UTC")
-  #   repo = CustomerRepo.new(engine)
-  #   assert_equal customer, repo.find_by_first_name("Joey")
-  # end
-  #
+  def test_it_finds_by_first_name
+    result = repo.find_by_first_name("Joey")
+    assert_equal "Joey", result.first_name
+  end
+
   def test_it_finds_all_by_first_name
-    skip
-    collection = repo.collection
-    assert_equal "Joey", customer.find_all_by_last_name("Joey")
+    result = repo.find_all_by_first_name("Sylvester")
+    assert_equal 2, result.count
   end
 
   def test_it_finds_all_by_last_name
-    skip
-    engine = SalesEngine.new
-    customer = CustomerRepo.new(engine)
-    collection = customer.collection
-    assert_equal "Nader", customer.find_all_by_last_name("Nader")
+    results = repo.find_all_by_last_name("Nader")
+    assert_equal 3, results.count
   end
 end
