@@ -7,7 +7,7 @@ class InvoiceItem
               :created_at,
               :updated_at
 
-  def initialize(attributes={}, repo)
+  def initialize(repo, attributes={})
     @id                = attributes[:id]
     @item_id           = attributes[:item_id]
     @invoice_id        = attributes[:invoice_id]

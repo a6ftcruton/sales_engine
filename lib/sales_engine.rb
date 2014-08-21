@@ -26,6 +26,7 @@ class SalesEngine
 
     csv = CSV.open('data/invoice_items.csv', headers: true, header_converters: :symbol)
     @invoice_item_repo = InvoiceItemRepo.new(self, csv)
+
     @invoice_repo      = InvoiceRepo.new(self)
     @item_repo         = ItemRepo.new(self)
     @merchant_repo     = MerchantRepo.new(self)

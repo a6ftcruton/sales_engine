@@ -5,12 +5,14 @@ require_relative '../list_search'
 class InvoiceItemRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection
+  attr_reader :collection,
+              :invoice_item_repo
 
-  def initialize(repo, invoice_items_data)
-    # @csv               = CSV.open('data/invoice_items.csv', headers: true, header_converters: :symbol)
-    @collection        = invoice_items_data.map { |row| InvoiceItem.new(row) }
-    @invoice_item_repo = repo
+  def initialize(engine, invoice_items_data)
+    @collection   = invoice_items_data.map { |row| InvoiceItem.new(self, row) }
+    @sales_engine = engine
   end
+
+  # Add methods and tests!
+
 end
