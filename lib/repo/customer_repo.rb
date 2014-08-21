@@ -9,7 +9,7 @@ class CustomerRepo
               :sales_engine
 
   def initialize(engine, customers_data)
-    @collection = customers_data.map { |row| Customer.new( self, row) }
+    @collection = customers_data.map { |row| Customer.new(self, row) }
     @sales_engine = engine
   end
 
