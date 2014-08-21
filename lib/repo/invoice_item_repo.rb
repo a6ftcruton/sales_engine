@@ -13,6 +13,10 @@ class InvoiceItemRepo
     @sales_engine = engine
   end
 
-  # Add methods and tests!
+  def find_invoice_items_by_invoice_id(id)
+    collection.find_all do |invoice_item|
+      invoice_item.invoice_id == id
+    end
+  end
 
 end

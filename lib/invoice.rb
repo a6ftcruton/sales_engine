@@ -15,4 +15,8 @@ class Invoice
     @updated_at    = attributes[:updated_at]
     @invoice_repo  = repo
   end
+
+  def invoice_items
+    @invoice_repo.find_invoice_items_by_invoice_id(id)
+  end
 end

@@ -5,7 +5,8 @@ require_relative '../list_search'
 class InvoiceRepo
   include ListSearch
 
-  attr_reader :collection
+  attr_reader :collection,
+              :sales_engine
 
   def initialize(engine, invoices_data)
     @collection = invoices_data.map { |row| Invoice.new(self, row) }
@@ -28,5 +29,9 @@ class InvoiceRepo
     collection.find_all do |invoice|
       invoice.customer_id == id
     end
+  end
+
+  def find_invoice_items_by_invoice_id(id)
+    @sales_engine.find_invoice_items_by_invoice_id(id)
   end
 end
