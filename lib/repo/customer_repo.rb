@@ -5,12 +5,11 @@ require_relative '../list_search'
 class CustomerRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection,
+  attr_reader :collection,
               :sales_engine
 
   def initialize(engine, customers_data)
-    @collection = customers_data.map { |row| Customer.new(row, self) }
+    @collection = customers_data.map { |row| Customer.new( self, row) }
     @sales_engine = engine
   end
 
