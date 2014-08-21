@@ -25,4 +25,22 @@ class CustomerTest < Minitest::Test
     customer = Customer.new(attributes, repo)
     assert_equal "Jerde", customer.first_name
   end
+
+
+  def merchant_with(overrides)
+    default_attributes = {
+      first_name: 'John',
+      last_name:  'Doe',
+    }
+    default_attributes.merge(overrides)
+  end
+
+  def test_it_finds_by_last_name
+    merchants =  [ merchant_with(last_name: 'B'),
+                   merchant_with(last_name: 'A')]
+    repo = CustomerRepo.new(nil, merchants)
+    assert_equal 'A', repo.find_by_last_name('A').last_name
+    assert_equal 'B', repo.find_by_last_name('B').last_name
+  end
 end
+

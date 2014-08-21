@@ -21,7 +21,8 @@ class SalesEngine
               :transaction_repo
 
   def initialize
-    @customer_repo     = CustomerRepo.new(self)
+    csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
+    @customer_repo     = CustomerRepo.new(self, csv)
     @invoice_item_repo = InvoiceItemRepo.new(self)
     @invoice_repo      = InvoiceRepo.new(self)
     @item_repo         = ItemRepo.new(self)

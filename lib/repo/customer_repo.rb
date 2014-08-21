@@ -9,9 +9,8 @@ class CustomerRepo
               :collection,
               :sales_engine
 
-  def initialize(engine)
-    @csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Customer.new(row, self) }
+  def initialize(engine, customers_data)
+    @collection = customers_data.map { |row| Customer.new(row, self) }
     @sales_engine = engine
   end
 
