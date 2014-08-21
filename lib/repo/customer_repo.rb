@@ -23,4 +23,16 @@ class CustomerRepo
     find_by first_name: first_name
   end
 
+  def find_all_by_first_name(name)
+    collection.find_all do |customer|
+      customer.first_name == name
+    end
+  end
+
+  def find_all_by_last_name(name)
+    collection.find_all do |customer|
+      customer.last_name == name
+    end
+  end
+
 end
