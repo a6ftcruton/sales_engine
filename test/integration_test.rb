@@ -7,10 +7,10 @@ require_relative '../lib/repo/invoice_repo'
 
 class IntegrationTest < Minitest::Test
   def test_relationship_between_merchant_and_invoice
+    attributes = [{id: "1"}]
     engine = SalesEngine.new
-    repo = MerchantRepo.new(engine)
-    merchant = Merchant.new({:id => 1}, repo)
-    invoices = merchant.invoices
+    repo = MerchantRepo.new(engine, attributes)
+    invoices = repo.collection.first.invoices
     assert_equal 59, invoices.count
     invoices.each do |invoice|
       assert_equal 1, invoice.merchant_id
@@ -30,18 +30,13 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_merchant_and_items
+    attributes = [{:id => 1}]
     engine = SalesEngine.new
-    repo = MerchantRepo.new(engine)
-    merchant = Merchant.new({:id => 1}, repo)
-    require 'pry'
-    binding.pry
-    items = merchant.items
-
-    assert_equal 20, items.count
+    repo = MerchantRepo.new(engine, attributes)
+    items = repo.collection.first.items
+    assert_equal 15, items.count
     items.each do |items|
-    assert_equal 1, item.merchant_id
+    assert_equal 1, items.merchant_id
+    end
   end
-  end
-
-
 end
