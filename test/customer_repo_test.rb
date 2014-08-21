@@ -14,8 +14,12 @@ class CustomerRepoTest < Minitest::Test
     }
   end
 
-  def repo
+  def self.repo
     @repo ||= SalesEngine.new.customer_repo
+  end
+
+  def repo
+    self.class.repo
   end
 
   def test_it_opens_associated_csv
