@@ -32,7 +32,7 @@ class CustomerRepoTest < Minitest::Test
 
   def test_it_returns_all_rows_using_module_method
     collection = repo.collection
-    assert_equal 1000, repo.all(collection).count
+    assert_equal 1000, repo.all.count
   end
 
   def test_it_finds_by_last_name

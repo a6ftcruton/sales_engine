@@ -1,11 +1,14 @@
 module ListSearch
-
   def all(instance)
     return instance
   end
 
-  def random(instance)
-    instance.sample
+  def all
+    self.collection
+  end
+
+  def random # <-- omg, test me ;)
+    self.collection.sample
   end
 
   def find_by(criteria)

@@ -34,5 +34,4 @@ class CustomerRepo
       customer.last_name == name
     end
   end
-
 end
