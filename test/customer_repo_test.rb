@@ -9,7 +9,7 @@ class CustomerRepoTest < Minitest::Test
       id: 1,
       first_name: "Jerde",
       last_name:  "Schroeder",
-      created_at: "2012-03-27 14:53:59 UTC",
+      created_at: "abc",
       updated_at: "2012-03-27 14:53:59 UTC"
     }
   end
@@ -43,6 +43,16 @@ class CustomerRepoTest < Minitest::Test
   def test_it_finds_by_first_name
     result = repo.find_by_first_name("Joey")
     assert_equal "Joey", result.first_name
+  end
+
+  def test_it_finds_by_created_at
+    result = repo.find_by_created_at("2012-03-27 14:54:09 UTC")
+    assert_equal "2012-03-27 14:54:09 UTC", result.created_at
+  end
+
+  def test_it_finds_by_updated_at
+    result = repo.find_by_updated_at("2012-03-27 14:54:09 UTC")
+    assert_equal "2012-03-27 14:54:09 UTC", result.updated_at
   end
 
   def test_it_finds_all_by_first_name
