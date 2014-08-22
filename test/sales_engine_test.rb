@@ -20,7 +20,7 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_it_opens_a_csv
-    
+
   end
 
 end

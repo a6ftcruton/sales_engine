@@ -20,7 +20,7 @@ class Item
   end
 
   def invoice_items
-    #returns a collection of InvoiceItems associated with this object
+    @item_repo.find_invoice_item_by_item_id(id)
   end
 
   def merchant

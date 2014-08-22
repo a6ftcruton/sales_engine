@@ -34,4 +34,8 @@ class ItemRepo
   def find_merchant_by_merchant_id(merchant_id)
     sales_engine.find_merchant_by_merchant_id(merchant_id)
   end
+  
+  def find_invoice_item_by_item_id(id)
+    @sales_engine.find_invoice_item_by_item_id(id)
+  end
 end

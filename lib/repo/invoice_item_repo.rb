@@ -27,11 +27,14 @@ class InvoiceItemRepo
     sales_engine.find_invoice_by_invoice_id(invoice_id)
   end
 
-  def find_items_associated_with_invoice_id(id)
+  # def find_items_associated_with_invoice_id(id)
+  #   collection.find_all do |invoice_item|
+  #     invoice_item.invoice_id == id
+  #   end
+  # end
+  def find_invoice_item_by_item_id(id)
     collection.find_all do |invoice_item|
-      require 'pry'
-      binding.pry
-      invoice_item.invoice_id == id
+      invoice_item.item_id == id
     end
   end
 end

@@ -11,5 +11,5 @@ class MerchantRepoTest < Minitest::Test
   def repo
     self.class.repo
   end
-  
+
 end

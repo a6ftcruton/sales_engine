@@ -37,6 +37,6 @@ class Invoice
   end
 
   def merchant
-    # returns an instance of Merchant associated with this object
+    @invoice_repo.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
   end
 end
