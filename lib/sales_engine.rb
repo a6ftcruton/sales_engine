@@ -32,7 +32,7 @@ class SalesEngine
     csv = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
     @merchant_repo     = MerchantRepo.new(self, csv)
     csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
-    @transaction_repo  = TransactionRepo.new(self)
+    @transaction_repo  = TransactionRepo.new(self, csv)
   end
 
   def startup
