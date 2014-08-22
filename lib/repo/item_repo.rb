@@ -24,4 +24,10 @@ class ItemRepo
       item.merchant_id == id
     end
   end
+
+  def find_item_by_item_id(item_id)
+    collection.find do |item|
+      item.id == item_id
+    end
+  end
 end

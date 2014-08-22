@@ -34,4 +34,8 @@ class InvoiceRepo
   def find_invoice_items_by_invoice_id(id)
     @sales_engine.find_invoice_items_by_invoice_id(id)
   end
+
+  def find_transactions_by_invoice_id(id)
+    @sales_engine.find_transactions_by_invoice_id(id)
+  end
 end

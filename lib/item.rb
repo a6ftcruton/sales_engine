@@ -17,4 +17,12 @@ class Item
     @updated_at  = attributes[:updated_at]
     @item_repo   = repo
   end
+
+  def invoice_items
+    #returns a collection of InvoiceItems associated with this object
+  end
+
+  def merchant
+    #returns an instance of Merchant associated with this object
+  end
 end

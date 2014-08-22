@@ -17,4 +17,8 @@ class Transaction
     @updated_at              = attributes[:updated_at]
     @transaction_repo        = repo
   end
+
+  def invoice
+    # returns an instance of Invoice associated with this object
+  end
 end

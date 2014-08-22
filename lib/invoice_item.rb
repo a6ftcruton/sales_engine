@@ -5,7 +5,8 @@ class InvoiceItem
               :quantity,
               :unit_price,
               :created_at,
-              :updated_at
+              :updated_at,
+              :invoice_item_repo
 
   def initialize(repo, attributes={})
     @id                = attributes[:id].to_i
@@ -16,6 +17,15 @@ class InvoiceItem
     @created_at        = attributes[:created_at]
     @updated_at        = attributes[:updated_at]
     @invoice_item_repo = repo
+  end
+
+  def invoice
+    # returns an instance of Invoice associated with this object
+  end
+
+  def item
+    invoice_item_repo.find_item_by_item_id(item_id)
+    # returns an instance of Item associated with this object
   end
 
 end

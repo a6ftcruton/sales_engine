@@ -19,4 +19,7 @@ class InvoiceItemRepo
     end
   end
 
+  def find_item_by_item_id(item_id)
+    sales_engine.find_item_by_item_id(item_id)
+  end
 end

@@ -5,6 +5,7 @@ class Invoice
               :status,
               :created_at,
               :updated_at
+              :invoice_repo
 
   def initialize(repo, attributes={})
     @id            = attributes[:id].to_i
@@ -18,5 +19,21 @@ class Invoice
 
   def invoice_items
     @invoice_repo.find_invoice_items_by_invoice_id(id)
+  end
+
+  def transactions
+    @invoice_repo.find_transactions_by_invoice_id(id)
+  end
+
+  def items
+    # returns a collection of associated Items by way of InvoiceItem objects
+  end
+
+  def customer
+    # returns an instance of Customer associated with this object
+  end
+
+  def merchant
+    # returns an instance of Merchant associated with this object
   end
 end
