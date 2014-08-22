@@ -30,4 +30,8 @@ class ItemRepo
       item.id == item_id
     end
   end
+
+  def find_invoice_item_by_item_id(id)
+    @sales_engine.find_invoice_item_by_item_id(id)
+  end
 end

@@ -22,4 +22,10 @@ class InvoiceItemRepo
   def find_item_by_item_id(item_id)
     sales_engine.find_item_by_item_id(item_id)
   end
+
+  def find_invoice_item_by_item_id(id)
+    collection.find_all do |invoice_item|
+      invoice_item.item_id == id
+    end
+  end
 end

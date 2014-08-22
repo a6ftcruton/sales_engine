@@ -36,7 +36,18 @@ class SalesEngine
   end
 
   def startup
-    # se = SalesEngine.new ???
+    # csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
+    # @customer_repo     = CustomerRepo.new(self, csv)
+    # csv = CSV.open('data/invoice_items.csv', headers: true, header_converters: :symbol)
+    # @invoice_item_repo = InvoiceItemRepo.new(self, csv)
+    # csv = CSV.open('data/invoices.csv', headers: true, header_converters: :symbol)
+    # @invoice_repo      = InvoiceRepo.new(self, csv)
+    # csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
+    # @item_repo         = ItemRepo.new(self, csv)
+    # csv = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
+    # @merchant_repo     = MerchantRepo.new(self, csv)
+    # csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
+    # @transaction_repo  = TransactionRepo.new(self, csv)
   end
 
   def find_invoices_by_merchant_id(id)
@@ -62,4 +73,17 @@ class SalesEngine
   def find_item_by_item_id(item_id)
     item_repo.find_item_by_item_id(item_id)
   end
+
+  def find_invoice_items_by_id(id)
+    invoice_item_repo.find_invoice_items_by_item_id(id)
+  end
+
+  def find_invoice_item_by_item_id(id)
+    invoice_item_repo.find_invoice_item_by_item_id(id)
+  end
+
+  def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+    merchant_repo.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+  end
+
 end
