@@ -33,15 +33,11 @@ class IntegrationTest < Minitest::Test
     engine = SalesEngine.new
     repo = MerchantRepo.new(engine)
     merchant = Merchant.new({:id => 1}, repo)
-    require 'pry'
-    binding.pry
     items = merchant.items
 
     assert_equal 20, items.count
     items.each do |items|
-    assert_equal 1, item.merchant_id
+      assert_equal 1, item.merchant_id
+    end
   end
-  end
-
-
 end

@@ -9,7 +9,7 @@ class CustomerRepo
               :sales_engine
 
   def initialize(engine, customers_data)
-    @collection = customers_data.map { |row| Customer.new(self, row) }
+    @collection   = customers_data.map { |row| Customer.new(self, row) }
     @sales_engine = engine
   end
 
@@ -19,6 +19,14 @@ class CustomerRepo
 
   def find_by_first_name(first_name)
     find_by first_name: first_name
+  end
+
+  def find_by_created_at(created_at)
+    find_by created_at: created_at
+  end
+
+  def find_by_updated_at(updated_at)
+    find_by updated_at: updated_at
   end
 
   def find_all_by_first_name(name)
