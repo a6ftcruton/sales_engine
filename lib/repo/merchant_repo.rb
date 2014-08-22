@@ -5,13 +5,11 @@ require_relative '../list_search'
 class MerchantRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection
+  attr_reader :collection,
               :sales_engine
 
-  def initialize(engine)
-    @csv          = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
-    @collection   = csv.map { |row| Merchant.new(row) }
+  def initialize(engine, merchant_data)
+    @collection   = merchant_data.map { |row| Merchant.new(self, row) }
     @sales_engine = engine
   end
 
@@ -22,5 +20,17 @@ class MerchantRepo
 
   def find_items_by_merchant_id(id)
     @sales_engine.find_items_by_merchant_id(id)
+  end
+
+  def find_merchant_by_merchant_id(id)
+    collection.find do |merchant|
+      merchant.id == id
+    end
+  end
+
+  def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+    collection.find do |merchant|
+      merchant.id == merchant_id
+    end
   end
 end

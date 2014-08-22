@@ -5,13 +5,11 @@ require_relative '../list_search'
 class CustomerRepo
   include ListSearch
 
-  attr_reader :csv,
-              :collection,
+  attr_reader :collection,
               :sales_engine
 
-  def initialize(engine)
-    @csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
-    @collection = csv.map { |row| Customer.new(row, self) }
+  def initialize(engine, customers_data)
+    @collection   = customers_data.map { |row| Customer.new(self, row) }
     @sales_engine = engine
   end
 
@@ -21,6 +19,14 @@ class CustomerRepo
 
   def find_by_first_name(first_name)
     find_by first_name: first_name
+  end
+
+  def find_by_created_at(created_at)
+    find_by created_at: created_at
+  end
+
+  def find_by_updated_at(updated_at)
+    find_by updated_at: updated_at
   end
 
   def find_all_by_first_name(name)
@@ -35,4 +41,13 @@ class CustomerRepo
     end
   end
 
+  def find_invoices_by_customer_id(id)
+    sales_engine.find_invoices_by_customer_id(id)
+  end
+
+  def find_customer_by_customer_id(id)
+    collection.find do |customer|
+      customer.id == id
+    end
+  end
 end

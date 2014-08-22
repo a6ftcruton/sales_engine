@@ -6,42 +6,158 @@ require_relative '../lib/sales_engine'
 require_relative '../lib/repo/invoice_repo'
 
 class IntegrationTest < Minitest::Test
+  attr_reader :engine
+
+  def startup
+    @engine = SalesEngine.new
+  end
+
   def test_relationship_between_merchant_and_invoice
+    attributes = [{id: "1"}]
     engine = SalesEngine.new
-    repo = MerchantRepo.new(engine)
-    merchant = Merchant.new({:id => 1}, repo)
-    invoices = merchant.invoices
+    repo = MerchantRepo.new(engine, attributes)
+    invoices = repo.collection.first.invoices
     assert_equal 59, invoices.count
     invoices.each do |invoice|
       assert_equal 1, invoice.merchant_id
     end
-    # * we were getting nil back from merchant.invoices
-    # * didn't get it b/c the csv row was getting placed in the repo variable in Invoice#initialize
-    # * fixed the initialize method to put the csv row in the attributes variable
-    # * still not finding the invoices because we were comparing the string id to the integer id ("1"==1)
-    # * fixed that by calling .to_i on the merchant_id
-    # * now it found the invoice, but only found one
-    # * so we looked through the method invocation chain until we saw SalesEngine was calling find_by_...
-    # * we fixed it to call find_all_by...
-    # * that method didn't exist, so we wrote it
-    # * Now we get back the array of invoices, but we were asserting `1`
-    # * So we changed the test to expect the number we got back (59)
-    # * and then asserted that each invoice's merchant_id is our merchant's id (that we initialized it with)
   end
 
   def test_relationship_between_merchant_and_items
+    attributes = [{id: "1"}]
     engine = SalesEngine.new
-    repo = MerchantRepo.new(engine)
-    merchant = Merchant.new({:id => 1}, repo)
-    require 'pry'
-    binding.pry
-    items = merchant.items
-
-    assert_equal 20, items.count
+    repo = MerchantRepo.new(engine, attributes)
+    items = repo.collection.first.items
+    assert_equal 15, items.count
     items.each do |items|
-    assert_equal 1, item.merchant_id
-  end
+    assert_equal 1, items.merchant_id
+    end
   end
 
+  def test_relationship_between_customers_and_invoices
+    attributes = [{id: "2"}]
+    engine = SalesEngine.new
+    repo = CustomerRepo.new(engine, attributes)
+    invoices = repo.collection.first.invoices
+    assert_equal 1, invoices.count
+    invoices.each do |invoice|
+      assert_equal 2, invoice.customer_id
+    end
+  end
 
+  def test_relationship_between_invoices_and_invoice_items
+    attributes = [{id: "2"}]
+    engine = SalesEngine.new
+    repo = InvoiceRepo.new(engine, attributes)
+    invoice_items = repo.collection.first.invoice_items
+    assert_equal 4, invoice_items.count
+    invoice_items.each do |invoice_item|
+      assert_equal 2, invoice_item.invoice_id
+    end
+  end
+
+  def test_relationship_between_invoices_and_transactions
+    attributes = [{id: "12"}]
+    engine = SalesEngine.new
+    repo = InvoiceRepo.new(engine, attributes)
+    transactions = repo.collection.first.transactions
+    assert_equal 3, transactions.count
+    transactions.each do |transaction|
+      assert_equal 12, transaction.invoice_id
+    end
+  end
+
+  def test_relationship_between_invoice_item_and_item
+    engine            = SalesEngine.new
+    invoice_item_repo = engine.invoice_item_repo
+    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+                          invoice_item.item_id == 1
+                        end
+    item              = invoice_item.item
+    refute_nil   item
+    assert_equal Item, item.class
+    assert_equal 1, item.id
+  end
+
+  def test_relationship_between_invoice_item_and_invoice
+    engine            = SalesEngine.new
+    invoice_item_repo = engine.invoice_item_repo
+    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+                        invoice_item.invoice_id == 1
+                      end
+    invoice =        invoice_item.invoice
+    refute_nil   invoice
+    assert_equal Invoice, invoice.class
+    assert_equal 1, invoice.id
+  end
+
+  def test_relationship_between_item_and_invoice_items
+    engine            = SalesEngine.new
+    item_repo         = engine.item_repo
+    item              = item_repo.collection.find do |item|
+                          item.id == 1
+                        end
+    invoice_items     = item.invoice_items
+    refute_nil   invoice_items
+    assert_equal 24, invoice_items.count
+  end
+
+  def test_relationship_between_item_and_merchant
+    engine            = SalesEngine.new
+    item_repo         = engine.item_repo
+    item = item_repo.collection.detect do |item|
+      item.merchant_id == 1
+    end
+    merchant          = item.merchant
+    refute_nil   merchant
+    assert_equal Merchant, merchant.class
+    assert_equal 1, merchant.id
+  end
+
+  def test_relationship_between_invoice_and_items
+    engine            = SalesEngine.new
+    invoice_repo      = engine.invoice_repo
+    target_invoice           = invoice_repo.collection.detect do |invoice|
+                        invoice.id == 1
+                      end
+    items           = target_invoice.items
+    refute_nil     items
+    assert_equal 8, items.count
+  end
+
+  def test_relationship_between_invoice_and_customer
+    engine            = SalesEngine.new
+    invoice_repo      = engine.invoice_repo
+    invoice           = invoice_repo.collection.detect do |invoice|
+                        invoice.customer_id == 1
+                      end
+    customer          = invoice.customer
+    refute_nil    customer
+    assert_equal  Customer, customer.class
+    assert_equal  1, customer.id
+  end
+
+  def test_relationship_between_invoice_and_merchant
+    engine           = SalesEngine.new
+    invoice_repo     = engine.invoice_repo
+    invoice          = invoice_repo.collection.find do |invoice|
+                         invoice.merchant_id == 31
+                       end
+    merchant         = invoice.merchant
+    refute_nil    merchant
+    assert_equal  Merchant, merchant.class
+    assert_equal  31, merchant.id
+  end
+
+  def test_relationship_between_transaction_and_invoice
+    engine           = SalesEngine.new
+    transaction_repo = engine.transaction_repo
+    transaction      = transaction_repo.collection.detect do |transaction|
+                        transaction.invoice_id == 1
+                      end
+    invoice          = transaction.invoice
+    refute_nil     invoice
+    assert_equal   Invoice, invoice.class
+    assert_equal   1, invoice.id
+  end
 end

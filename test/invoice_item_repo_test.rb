@@ -1,11 +1,32 @@
 require 'minitest/autorun'
 require 'minitest/pride'
+require_relative '../lib/sales_engine'
 require_relative '../lib/repo/invoice_item_repo'
 
 class InvoiceItemRepoTest < Minitest::Test
-  def test_it_opens_associated_csv
-    engine = SalesEngine.new
-    customer_repo = InvoiceItemRepo.new(engine)
-    assert customer_repo.respond_to?(:csv), "No csv method found for invoice item repo"
+
+#id
+#quantity
+#unit_price
+#created_at
+#updated_at
+#item_id
+#invoice_id
+
+  def self.repo
+    @repo ||= SalesEngine.new.invoice_item_repo
   end
+
+  def repo
+    self.class.repo
+  end
+
+  def test_it_returns_all_rows_using_module_method
+    assert_equal 21687, repo.all.count
+  end
+
+  def test_it_can_call_random_method_from_module
+    assert repo.respond_to?(:random)
+  end
+
 end

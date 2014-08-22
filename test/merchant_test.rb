@@ -1,11 +1,10 @@
 require_relative 'test_helper'
 
 class MerchantTest < Minitest::Test
+  attr_reader :merchant
 
   def setup
-    @engine = SalesEngine.new
-    @repo = MerchantRepo.new(@engine)
-    @merchant = Merchant.new(attributes, @repo)
+    @merchant = Merchant.new(nil, attributes)
   end
 
   def attributes
@@ -18,20 +17,18 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_stores_the_merchants_id
-    assert_equal 1, @merchant.id
+    assert_equal 1, merchant.id
   end
 
   def test_it_stores_merchant_name
-    assert_equal "Schroeder-Jerde", @merchant.name
+    assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_it_stores_merchant_created_at
-    merchant = Merchant.new(attributes)
     assert merchant.respond_to?(:created_at)
   end
 
   def test_it_stores_merchant_updated_at
-    merchant = Merchant.new(attributes)
     assert merchant.respond_to?(:updated_at)
   end
 

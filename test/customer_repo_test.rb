@@ -9,17 +9,17 @@ class CustomerRepoTest < Minitest::Test
       id: 1,
       first_name: "Jerde",
       last_name:  "Schroeder",
-      created_at: "2012-03-27 14:53:59 UTC",
+      created_at: "abc",
       updated_at: "2012-03-27 14:53:59 UTC"
     }
   end
 
-  def repo
+  def self.repo
     @repo ||= SalesEngine.new.customer_repo
   end
 
-  def test_it_opens_associated_csv
-    assert repo.respond_to?(:csv), "No csv method found for CustomerRepo"
+  def repo
+    self.class.repo
   end
 
   def test_it_creates_customer_instance_by_row
@@ -32,7 +32,7 @@ class CustomerRepoTest < Minitest::Test
 
   def test_it_returns_all_rows_using_module_method
     collection = repo.collection
-    assert_equal 1000, repo.all(collection).count
+    assert_equal 1000, repo.all.count
   end
 
   def test_it_finds_by_last_name
@@ -45,6 +45,16 @@ class CustomerRepoTest < Minitest::Test
     assert_equal "Joey", result.first_name
   end
 
+  def test_it_finds_by_created_at
+    result = repo.find_by_created_at("2012-03-27 14:54:09 UTC")
+    assert_equal "2012-03-27 14:54:09 UTC", result.created_at
+  end
+
+  def test_it_finds_by_updated_at
+    result = repo.find_by_updated_at("2012-03-27 14:54:09 UTC")
+    assert_equal "2012-03-27 14:54:09 UTC", result.updated_at
+  end
+
   def test_it_finds_all_by_first_name
     result = repo.find_all_by_first_name("Sylvester")
     assert_equal 2, result.count
@@ -54,4 +64,21 @@ class CustomerRepoTest < Minitest::Test
     results = repo.find_all_by_last_name("Nader")
     assert_equal 3, results.count
   end
+
+  def merchant_with(overrides)
+    default_attributes = {
+      first_name: 'John',
+      last_name:  'Doe',
+    }
+    default_attributes.merge(overrides)
+  end
+
+  def test_it_finds_by_last_name
+    merchants =  [ merchant_with(last_name: 'B'),
+                   merchant_with(last_name: 'A')]
+    repo = CustomerRepo.new(nil, merchants)
+    assert_equal 'A', repo.find_by_last_name('A').last_name
+    assert_equal 'B', repo.find_by_last_name('B').last_name
+  end
+
 end

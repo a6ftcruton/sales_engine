@@ -5,9 +5,10 @@ class Item
               :unit_price,
               :merchant_id,
               :created_at,
-              :updated_at
+              :updated_at,
+              :item_repo
 
-  def initialize(attributes = {}, repo = nil)
+  def initialize(repo, attributes = {})
     @id          = attributes[:id].to_i
     @name        = attributes[:name]
     @description = attributes[:description]
@@ -16,5 +17,14 @@ class Item
     @created_at  = attributes[:created_at]
     @updated_at  = attributes[:updated_at]
     @item_repo   = repo
+  end
+
+  def invoice_items
+    @item_repo.find_invoice_item_by_item_id(id)
+  end
+
+  def merchant
+    item_repo.find_merchant_by_merchant_id(merchant_id)
+    #returns an instance of Merchant associated with this object
   end
 end
