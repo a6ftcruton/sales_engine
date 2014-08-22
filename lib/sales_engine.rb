@@ -91,7 +91,7 @@ class SalesEngine
   end
 
   def find_items_associated_with_invoice_id(id)
-    invoice_item_repo.find_items_associated_with_invoice_id(id)
+    item_repo.find_items_associated_with_invoice_id(id)
   end
 
   def find_invoice_items_by_id(id)

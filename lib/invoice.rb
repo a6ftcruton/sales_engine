@@ -26,9 +26,14 @@ class Invoice
   end
 
   def items
-    invoice_repo.find_items_associated_with_invoice_id(id)
-    #item_ids = invoice_items.find { |invoice_item| invoice_item.item_id}
-    # returns a collection of associated Items by way of InvoiceItem objects
+    # invoice_repo.find_items_associated_with_invoice_id(id)
+    item_ids = invoice_items.map do |invoice_item|
+                invoice_item.item_id
+              end
+    items = item_ids.map do |item_id|
+       invoice_repo.find_items_associated_with_invoice_id(item_id)
+     end
+     items
   end
 
   def customer
