@@ -115,10 +115,12 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_and_items
-    skip
     engine            = SalesEngine.new
     invoice_repo      = engine.invoice_repo
-    items             = invoice_repo.find_items_by_going_through_invoice_id_and_then_item_id
+    invoice           = invoice_repo.collection.detect do |invoice|
+                        invoice_id == 1
+                      end
+    items             = invoice.items
 
     refute_nil     items
     assert_equal 3, items.count

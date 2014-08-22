@@ -78,4 +78,8 @@ class SalesEngine
   def find_invoice_by_invoice_id(invoice_id)
     invoice_repo.find_invoice_by_invoice_id(invoice_id)
   end
+
+  def find_items_associated_with_invoice_id(id)
+    invoice_item_repo.find_items_associated_with_invoice_id(id)
+  end
 end

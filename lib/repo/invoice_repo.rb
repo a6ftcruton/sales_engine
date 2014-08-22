@@ -54,4 +54,8 @@ class InvoiceRepo
       invoice.id == invoice_id
     end
   end
+
+  def find_items_associated_with_invoice_id(id)
+    sales_engine.find_items_associated_with_invoice_id(id)
+  end
 end
