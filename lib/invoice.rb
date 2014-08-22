@@ -4,7 +4,7 @@ class Invoice
               :merchant_id,
               :status,
               :created_at,
-              :updated_at
+              :updated_at,
               :invoice_repo
 
   def initialize(repo, attributes={})
@@ -30,6 +30,7 @@ class Invoice
   end
 
   def customer
+    invoice_repo.find_customer_by_customer_id(customer_id)
     # returns an instance of Customer associated with this object
   end
 

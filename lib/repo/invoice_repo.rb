@@ -38,4 +38,20 @@ class InvoiceRepo
   def find_transactions_by_invoice_id(id)
     @sales_engine.find_transactions_by_invoice_id(id)
   end
+
+  def find_invoice_by_invoice_id(invoice_id)
+    collection.find do |invoice|
+      invoice.id == invoice_id
+    end
+  end
+
+  def find_customer_by_customer_id(customer_id)
+    sales_engine.find_customer_by_customer_id(customer_id)
+  end
+
+  def find_invoice_by_invoice_id(invoice_id)
+    collection.find do |invoice|
+      invoice.id == invoice_id
+    end
+  end
 end

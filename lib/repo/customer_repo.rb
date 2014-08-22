@@ -44,4 +44,10 @@ class CustomerRepo
   def find_invoices_by_customer_id(id)
     sales_engine.find_invoices_by_customer_id(id)
   end
+
+  def find_customer_by_customer_id(id)
+    collection.find do |customer|
+      customer.id == id
+    end
+  end
 end

@@ -6,6 +6,11 @@ require_relative '../lib/sales_engine'
 require_relative '../lib/repo/invoice_repo'
 
 class IntegrationTest < Minitest::Test
+  attr_reader :engine
+
+  def startup
+    @engine = SalesEngine.new
+  end
   def test_relationship_between_merchant_and_invoice
     attributes = [{id: "1"}]
     engine = SalesEngine.new
@@ -61,11 +66,13 @@ class IntegrationTest < Minitest::Test
     end
   end
 
-  def test_relationship_between_invoice_item_and_items
+  def test_relationship_between_invoice_item_and_item
     engine            = SalesEngine.new
     invoice_item_repo = engine.invoice_item_repo
-    item              = invoice_item_repo.find_item_by_item_id(1)
-
+    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+                          invoice_item.item_id == 1
+                        end
+    item              = invoice_item.item
     refute_nil   item
     assert_equal Item, item.class
     assert_equal 1, item.id
@@ -74,7 +81,10 @@ class IntegrationTest < Minitest::Test
   def test_relationship_between_invoice_item_and_invoice
     engine            = SalesEngine.new
     invoice_item_repo = engine.invoice_item_repo
-    invoice           = invoice_item_repo.find_invoice_by_invoice_id
+    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+                        invoice_item.invoice_id == 1
+                      end
+    invoice =        invoice_item.invoice
 
     refute_nil   invoice
     assert_equal Invoice, invoice.class
@@ -92,10 +102,12 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_item_and_merchant
-    skip
     engine            = SalesEngine.new
     item_repo         = engine.item_repo
-    merchant          = item_repo.find_merchant_by_merchant_id
+    item = item_repo.collection.detect do |item|
+      item.merchant_id == 1
+    end
+    merchant          = item.merchant
 
     refute_nil   merchant
     assert_equal Merchant, merchant.class
@@ -109,14 +121,16 @@ class IntegrationTest < Minitest::Test
     items             = invoice_repo.find_items_by_going_through_invoice_id_and_then_item_id
 
     refute_nil     items
-    assert_equal 3 items.count
+    assert_equal 3, items.count
   end
 
   def test_relationship_between_invoice_and_customer
-    skip
     engine            = SalesEngine.new
     invoice_repo      = engine.invoice_repo
-    customer          = invoice_repo.find_customer_by_customer_id
+    invoice           = invoice_repo.collection.detect do |invoice|
+                        invoice.customer_id == 1
+                      end
+    customer          = invoice.customer
 
     refute_nil    customer
     assert_equal  Customer, customer.class
@@ -135,10 +149,12 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_transaction_and_invoice
-    skip
     engine           = SalesEngine.new
     transaction_repo = engine.transaction_repo
-    invoice          = transaction_repo.find_by_invoice_id
+    transaction      = transaction_repo.collection.detect do |transaction|
+                        transaction.invoice_id == 1
+                      end
+    invoice          = transaction.invoice
 
     refute_nil     invoice
     assert_equal   Invoice, invoice.class

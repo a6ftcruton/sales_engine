@@ -21,4 +21,10 @@ class MerchantRepo
   def find_items_by_merchant_id(id)
     @sales_engine.find_items_by_merchant_id(id)
   end
+
+  def find_merchant_by_merchant_id(id)
+    collection.find do |merchant|
+      merchant.id == id
+    end
+  end
 end

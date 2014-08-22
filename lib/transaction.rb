@@ -5,7 +5,8 @@ class Transaction
               :credit_card_expiration,
               :result,
               :created_at,
-              :updated_at
+              :updated_at,
+              :transaction_repo
 
   def initialize(repo, attributes = {})
     @id                      = attributes[:id].to_i
@@ -19,6 +20,7 @@ class Transaction
   end
 
   def invoice
+    transaction_repo.find_invoice_by_invoice_id(invoice_id)
     # returns an instance of Invoice associated with this object
   end
 end
