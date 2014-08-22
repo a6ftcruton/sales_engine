@@ -25,7 +25,6 @@ class InvoiceItem
 
   def item
     invoice_item_repo.find_item_by_item_id(item_id)
-    # returns an instance of Item associated with this object
   end
 
 end

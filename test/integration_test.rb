@@ -70,4 +70,78 @@ class IntegrationTest < Minitest::Test
     assert_equal Item, item.class
     assert_equal 1, item.id
   end
+
+  def test_relationship_between_invoice_item_and_invoice
+    engine            = SalesEngine.new
+    invoice_item_repo = engine.invoice_item_repo
+    invoice           = invoice_item_repo.find_invoice_by_invoice_id
+
+    refute_nil   invoice
+    assert_equal Invoice, invoice.class
+    assert_equal 1, invoice.id
+  end
+
+  def test_relationship_between_item_and_invoice_items
+    skip
+    engine            = SalesEngine.new
+    item_repo         = engine.item_repo
+    invoice_items     = item_repo.find_invoice_items_by_item_id
+
+    refute_nil   invoice_items
+    assert_equal 4, invoice_items.count
+  end
+
+  def test_relationship_between_item_and_merchant
+    skip
+    engine            = SalesEngine.new
+    item_repo         = engine.item_repo
+    merchant          = item_repo.find_merchant_by_merchant_id
+
+    refute_nil   merchant
+    assert_equal Merchant, merchant.class
+    assert_equal 1, merchant.id
+  end
+
+  def test_relationship_between_invoice_and_items
+    skip
+    engine            = SalesEngine.new
+    invoice_repo      = engine.invoice_repo
+    items             = invoice_repo.find_items_by_going_through_invoice_id_and_then_item_id
+
+    refute_nil     items
+    assert_equal 3 items.count
+  end
+
+  def test_relationship_between_invoice_and_customer
+    skip
+    engine            = SalesEngine.new
+    invoice_repo      = engine.invoice_repo
+    customer          = invoice_repo.find_customer_by_customer_id
+
+    refute_nil    customer
+    assert_equal  Customer, customer.class
+    assert_equal  1, customer.id
+  end
+
+  def test_relationship_between_invoice_and_merchant
+    skip
+    engine           = SalesEngine.new
+    invoice_repo     = engine.invoice_repo
+    merchant         = invoice_repo.find_merchant_by_merchant_id
+
+    refute_nil    merchant
+    assert_equal  Merchant, merchant.class
+    assert_equal  1, merchant.id
+  end
+
+  def test_relationship_between_transaction_and_invoice
+    skip
+    engine           = SalesEngine.new
+    transaction_repo = engine.transaction_repo
+    invoice          = transaction_repo.find_by_invoice_id
+
+    refute_nil     invoice
+    assert_equal   Invoice, invoice.class
+    assert_equal   1, invoice.id
+  end
 end
