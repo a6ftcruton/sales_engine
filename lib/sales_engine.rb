@@ -36,19 +36,19 @@ class SalesEngine
   end
 
   def startup
-    # csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
-    # @customer_repo     = CustomerRepo.new(self, csv)
-    # csv = CSV.open('data/invoice_items.csv', headers: true, header_converters: :symbol)
-    # @invoice_item_repo = InvoiceItemRepo.new(self, csv)
-    # csv = CSV.open('data/invoices.csv', headers: true, header_converters: :symbol)
-    # @invoice_repo      = InvoiceRepo.new(self, csv)
-    # csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
-    # @item_repo         = ItemRepo.new(self, csv)
-    # csv = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
-    # @merchant_repo     = MerchantRepo.new(self, csv)
-    # csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
-    # @transaction_repo  = TransactionRepo.new(self, csv)
-  end
+  #   csv = CSV.open('data/customers.csv', headers: true, header_converters: :symbol)
+  #   @customer_repo     = CustomerRepo.new(self, csv)
+  #   csv = CSV.open('data/invoice_items.csv', headers: true, header_converters: :symbol)
+  #   @invoice_item_repo = InvoiceItemRepo.new(self, csv)
+  #   csv = CSV.open('data/invoices.csv', headers: true, header_converters: :symbol)
+  #   @invoice_repo      = InvoiceRepo.new(self, csv)
+  #   csv = CSV.open('data/items.csv', headers: true, header_converters: :symbol)
+  #   @item_repo         = ItemRepo.new(self, csv)
+  #   csv = CSV.open('data/merchants.csv', headers: true, header_converters: :symbol)
+  #   @merchant_repo     = MerchantRepo.new(self, csv)
+  #   csv = CSV.open('data/transactions.csv', headers: true, header_converters: :symbol)
+  #   @transaction_repo  = TransactionRepo.new(self, csv)
+   end
 
   def find_invoices_by_merchant_id(id)
     invoice_repo.find_all_by_merchant_id(id)
