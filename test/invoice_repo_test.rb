@@ -4,7 +4,7 @@ require_relative '../lib/repo/invoice_repo'
 
 class InvoiceRepoTest < Minitest::Test
   def self.repo
-    @repo ||= SalesEngine.new.invoice_repo
+    @repo ||= SalesEngine.new.startup.invoice_repo
   end
 
   def repo

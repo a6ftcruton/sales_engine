@@ -5,11 +5,11 @@ require_relative '../lib/sales_engine'
 class SalesEngineTest < Minitest::Test
 
   def test_it_can_create_a_new_instance
-    assert SalesEngine.new
+    assert SalesEngine.new.startup
   end
 
   def test_it_has_access_to_all_repo_classes_after_startup
-    se = SalesEngine.new
+    se = SalesEngine.new.startup
     se.startup
     assert se.respond_to?(:customer_repo)
     assert se.respond_to?(:invoice_item_repo)

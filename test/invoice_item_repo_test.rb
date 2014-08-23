@@ -14,7 +14,7 @@ class InvoiceItemRepoTest < Minitest::Test
 #invoice_id
 
   def self.repo
-    @repo ||= SalesEngine.new.invoice_item_repo
+    @repo ||= SalesEngine.new.startup.invoice_item_repo
   end
 
   def repo

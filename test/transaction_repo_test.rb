@@ -4,7 +4,7 @@ require_relative '../lib/repo/transaction_repo'
 
 class TransactionRepoTest < Minitest::Test
   def self.repo
-    @repo ||= SalesEngine.new.customer_repo
+    @repo ||= SalesEngine.new.startup.customer_repo
   end
 
   def repo

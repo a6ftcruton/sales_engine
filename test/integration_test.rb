@@ -9,12 +9,12 @@ class IntegrationTest < Minitest::Test
   attr_reader :engine
 
   def startup
-    @engine = SalesEngine.new
+    @engine = SalesEngine.new.startup
   end
 
   def test_relationship_between_merchant_and_invoice
     attributes = [{id: "1"}]
-    engine = SalesEngine.new
+    engine = SalesEngine.new.startup
     repo = MerchantRepo.new(engine, attributes)
     invoices = repo.collection.first.invoices
     assert_equal 59, invoices.count
@@ -25,7 +25,7 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_merchant_and_items
     attributes = [{id: "1"}]
-    engine = SalesEngine.new
+    engine = SalesEngine.new.startup
     repo = MerchantRepo.new(engine, attributes)
     items = repo.collection.first.items
     assert_equal 15, items.count
@@ -36,7 +36,7 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_customers_and_invoices
     attributes = [{id: "2"}]
-    engine = SalesEngine.new
+    engine = SalesEngine.new.startup
     repo = CustomerRepo.new(engine, attributes)
     invoices = repo.collection.first.invoices
     assert_equal 1, invoices.count
@@ -47,7 +47,7 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoices_and_invoice_items
     attributes = [{id: "2"}]
-    engine = SalesEngine.new
+    engine = SalesEngine.new.startup
     repo = InvoiceRepo.new(engine, attributes)
     invoice_items = repo.collection.first.invoice_items
     assert_equal 4, invoice_items.count
@@ -58,7 +58,7 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoices_and_transactions
     attributes = [{id: "12"}]
-    engine = SalesEngine.new
+    engine = SalesEngine.new.startup
     repo = InvoiceRepo.new(engine, attributes)
     transactions = repo.collection.first.transactions
     assert_equal 3, transactions.count
@@ -68,7 +68,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_item_and_item
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     invoice_item_repo = engine.invoice_item_repo
     invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
                           invoice_item.item_id == 1
@@ -80,7 +80,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_item_and_invoice
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     invoice_item_repo = engine.invoice_item_repo
     invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
                         invoice_item.invoice_id == 1
@@ -92,7 +92,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_item_and_invoice_items
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     item_repo         = engine.item_repo
     item              = item_repo.collection.find do |item|
                           item.id == 1
@@ -103,7 +103,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_item_and_merchant
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     item_repo         = engine.item_repo
     item = item_repo.collection.detect do |item|
       item.merchant_id == 1
@@ -115,7 +115,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_and_items
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     invoice_repo      = engine.invoice_repo
     target_invoice           = invoice_repo.collection.detect do |invoice|
                         invoice.id == 1
@@ -126,7 +126,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_and_customer
-    engine            = SalesEngine.new
+    engine            = SalesEngine.new.startup
     invoice_repo      = engine.invoice_repo
     invoice           = invoice_repo.collection.detect do |invoice|
                         invoice.customer_id == 1
@@ -138,7 +138,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_invoice_and_merchant
-    engine           = SalesEngine.new
+    engine           = SalesEngine.new.startup
     invoice_repo     = engine.invoice_repo
     invoice          = invoice_repo.collection.find do |invoice|
                          invoice.merchant_id == 31
@@ -150,7 +150,7 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_transaction_and_invoice
-    engine           = SalesEngine.new
+    engine           = SalesEngine.new.startup
     transaction_repo = engine.transaction_repo
     transaction      = transaction_repo.collection.detect do |transaction|
                         transaction.invoice_id == 1
