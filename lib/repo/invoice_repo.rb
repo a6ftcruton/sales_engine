@@ -13,65 +13,65 @@ class InvoiceRepo
     @sales_engine = engine
   end
 
-  def find_by(id)
+  def find_by_id(id)
     find_by id: id
   end
 
-  def find_by(customer_id)
+  def find_by_customer_id(customer_id)
     find_by customer_id: customer_id
   end
 
-  def find_by(merchant_id)
+  def find_by_merchant_id(merchant_id)
     find_by merchant_id: merchant_id
   end
 
-  def find_by(status)
+  def find_by_status(status)
     find_by status: status
   end
 
-  def find_by(created_at)
+  def find_by_created_at(created_at)
     find_by created_at: created_at
   end
 
-  def find_by(updated_at)
+  def find_by_updated_at(updated_at)
     find_by updated_at: updated_at
   end
 
-  def find_all_by(id)
+  def find_all_by_id(id)
     find_all_by id: id
   end
 
-  def find_all_by(customer_id)
+  def find_all_by_customer_id(customer_id)
     find_all_by customer_id: customer_id
   end
 
-  def find_all_by(merchant_id)
+  def find_all_by_merchant_id(merchant_id)
     find_all_by merchantid: merchant_id
   end
 
-  def find_all_by(status)
+  def find_all_by_status(status)
     find_all_by status: status
   end
 
-  def find_all_by(created_at)
+  def find_all_by_created_at(created_at)
     find_all_by created_at: created_at
   end
 
-  def find_all_by(updated_at)
+  def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
 
-  def find_by_merchant_id(id)
-    collection.find do |invoice|
-      invoice.merchant_id == id
-    end
-  end
-
-  def find_all_by_merchant_id(id)
-    collection.find_all do |invoice|
-      invoice.merchant_id == id
-    end
-  end
+  # def find_by_merchant_id(id)
+  #   collection.find do |invoice|
+  #     invoice.merchant_id == id
+  #   end
+  # end
+  #
+  # def find_all_by_merchant_id(id)
+  #   collection.find_all do |invoice|
+  #     invoice.merchant_id == id
+  #   end
+  # end
 
   def find_invoices_by_customer_id(id)
     collection.find_all do |invoice|

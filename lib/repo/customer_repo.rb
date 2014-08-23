@@ -33,7 +33,7 @@ class CustomerRepo
     find_by updated_at: updated_at
   end
 
-  def find_all_by(id)
+  def find_all_by_id(id)
     find_all_by id: id
   end
 
@@ -49,11 +49,11 @@ class CustomerRepo
     end
   end
 
-  def find_all_by(created_at)
+  def find_all_by_created_at(created_at)
     find_all_by created_at: created_at
   end
 
-  def find_all_by(updated_at)
+  def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
 

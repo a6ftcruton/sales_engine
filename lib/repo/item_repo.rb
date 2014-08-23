@@ -13,73 +13,73 @@ class ItemRepo
     @sales_engine = engine
   end
 
-  def find_by(id)
+  def find_by_id(id)
     find_by id: id
   end
 
-  def find_by(name)
+  def find_by_name(name)
     find_by name: name
   end
 
-  def find_by(description)
+  def find_by_description(description)
     find_by description: description
   end
 
-  def find_by(unit_price)
+  def find_by_unit_price(unit_price)
     find_by unit_price: unit_price
   end
 
-  def find_by(merchant_id)
+  def find_by_merchant_id(merchant_id)
     find_by merchant_id: merchant_id
   end
 
-  def find_by(created_at)
+  def find_by_created_at(created_at)
     find_by created_at: created_at
   end
 
-  def find_by(updated_at)
+  def find_by_updated_at(updated_at)
     find_by updated_at: updated_at
   end
 
-  def find_all_by(id)
+  def find_all_by_id(id)
     find_all_by id: id
   end
 
-  def find_all_by(name)
+  def find_all_by_name(name)
     find_all_by name: name
   end
 
-  def find_all_by(description)
+  def find_all_by_desciption(description)
     find_all_by description: description
   end
 
-  def find_all_by(unit_price)
+  def find_all_by_unit_price(unit_price)
     find_all_by unit_price: unit_price
   end
 
-  def find_all_by(merchant_id)
+  def find_all_by_merchant_id(merchant_id)
     find_all_by merchant_id: merchant_id
   end
 
-  def find_all_by(created_at)
+  def find_all_by_created_at(created_at)
     find_all_by created_at: created_at
   end
 
-  def find_all_by(updated_at)
+  def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
 
-  def find_by_merchant_id(id)
-    collection.find do |item|
-      item.merchant_id == id
-    end
-  end
-
-  def find_all_by_merchant_id(id)
-    collection.find_all do |item|
-      item.merchant_id == id
-    end
-  end
+  # def find_by_merchant_id(id)
+  #   collection.find do |item|
+  #     item.merchant_id == id
+  #   end
+  # end
+  #
+  # def find_all_by_merchant_id(id)
+  #   collection.find_all do |item|
+  #     item.merchant_id == id
+  #   end
+  # end
 
   def find_item_by_item_id(item_id)
     collection.find do |item|

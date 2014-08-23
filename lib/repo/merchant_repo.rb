@@ -13,6 +13,9 @@ class MerchantRepo
     @sales_engine = engine
   end
 
+  def find_by(id)
+    find_by
+  end
 
   def find_invoices_by_merchant_id(id)
     @sales_engine.find_invoices_by_merchant_id(id)
