@@ -7,7 +7,7 @@ class Merchant
 
   def initialize(repo, attributes={})
     @id            = attributes[:id].to_i
-    @name          = attributes[:name]
+    @name          = attributes[:name].downcase
     @created_at    = attributes[:created_at]
     @updated_at    = attributes[:updated_at]
     @merchant_repo = repo
