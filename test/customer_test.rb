@@ -19,12 +19,12 @@ class CustomerTest < Minitest::Test
 
   def test_it_stores_first_name
     customer = Customer.new(nil, attributes)
-    assert_equal "Jerde", customer.first_name
+    assert_equal "jerde", customer.first_name
   end
 
   def test_it_stores_last_name
     customer = Customer.new(nil, attributes)
-    assert_equal "Schroeder", customer.last_name
+    assert_equal "schroeder", customer.last_name
   end
 
 end

@@ -13,36 +13,36 @@ class IntegrationTest < Minitest::Test
   end
 
   def test_relationship_between_merchant_and_invoice
-    attributes = [{id: "1"}]
-    engine = SalesEngine.new.startup
-    repo = MerchantRepo.new(engine, attributes)
-    invoices = repo.collection.first.invoices
+    engine        = SalesEngine.new.startup
+    merchant_repo = engine.merchant_repo
+    merchant      = merchant_repo.collection.detect do |merchant|
+                      merchant.id == 1
+                    end
+    invoices      = merchant.invoices
+    refute_nil   invoices
     assert_equal 59, invoices.count
-    invoices.each do |invoice|
-      assert_equal 1, invoice.merchant_id
-    end
   end
 
   def test_relationship_between_merchant_and_items
-    attributes = [{id: "1"}]
-    engine = SalesEngine.new.startup
-    repo = MerchantRepo.new(engine, attributes)
-    items = repo.collection.first.items
-    assert_equal 15, items.count
-    items.each do |items|
-    assert_equal 1, items.merchant_id
-    end
+    engine        = SalesEngine.new.startup
+    merchant_repo = engine.merchant_repo
+    merchant      = merchant_repo.collection.detect do |merchant|
+                    merchant.id == 1
+                  end
+    items = merchant.items
+    refute_nil   items
+    assert_equal  15, items.count
   end
 
   def test_relationship_between_customers_and_invoices
-    attributes = [{id: "2"}]
-    engine = SalesEngine.new.startup
-    repo = CustomerRepo.new(engine, attributes)
-    invoices = repo.collection.first.invoices
+    engine        = SalesEngine.new.startup
+    customer_repo = engine.customer_repo
+    customer      = customer_repo.collection.detect do |customer|
+                    customer.id == 2
+                  end
+    invoices = customer.invoices
+    refute_nil      invoices
     assert_equal 1, invoices.count
-    invoices.each do |invoice|
-      assert_equal 2, invoice.customer_id
-    end
   end
 
   def test_relationship_between_invoices_and_invoice_items

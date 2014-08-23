@@ -41,8 +41,8 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def test_it_finds_by_first_name
-    result = repo.find_by_first_name("Joey")
-    assert_equal "Joey", result.first_name
+    result = repo.find_by_first_name("joey")
+    assert_equal "joey", result.first_name
   end
 
   def test_it_finds_by_created_at
@@ -56,12 +56,12 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def test_it_finds_all_by_first_name
-    result = repo.find_all_by_first_name("Sylvester")
+    result = repo.find_all_by_first_name("sylvester")
     assert_equal 2, result.count
   end
 
   def test_it_finds_all_by_last_name
-    results = repo.find_all_by_last_name("Nader")
+    results = repo.find_all_by_last_name("nader")
     assert_equal 3, results.count
   end
 
@@ -77,8 +77,8 @@ class CustomerRepoTest < Minitest::Test
     merchants =  [ merchant_with(last_name: 'B'),
                    merchant_with(last_name: 'A')]
     repo = CustomerRepo.new(nil, merchants)
-    assert_equal 'A', repo.find_by_last_name('A').last_name
-    assert_equal 'B', repo.find_by_last_name('B').last_name
+    assert_equal 'a', repo.find_by_last_name('a').last_name
+    assert_equal 'b', repo.find_by_last_name('b').last_name
   end
 
 end

@@ -10,12 +10,12 @@ module ListSearch
   def find_by(criteria)
     attribute = criteria.keys.first
     value     = criteria.values.first
-    collection.find { |record| record.send(attribute).downcase == value.downcase }
+    collection.find { |record| record.send(attribute) == value }
   end
 
   def find_all_by(criteria)
     attribute = criteria.keys.first
     value     = criteria.values.first
-    collection.find_all { |record| record.send(attribute).downcase == value.downcase }
+    collection.find_all { |record| record.send(attribute) == value }
   end
 end
