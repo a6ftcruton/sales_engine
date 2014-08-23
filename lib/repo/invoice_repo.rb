@@ -13,6 +13,54 @@ class InvoiceRepo
     @sales_engine = engine
   end
 
+  def find_by(id)
+    find_by id: id
+  end
+
+  def find_by(customer_id)
+    find_by customer_id: customer_id
+  end
+
+  def find_by(merchant_id)
+    find_by merchant_id: merchant_id
+  end
+
+  def find_by(status)
+    find_by status: status
+  end
+
+  def find_by(created_at)
+    find_by created_at: created_at
+  end
+
+  def find_by(updated_at)
+    find_by updated_at: updated_at
+  end
+
+  def find_all_by(id)
+    find_all_by id: id
+  end
+
+  def find_all_by(customer_id)
+    find_all_by customer_id: customer_id
+  end
+
+  def find_all_by(merchant_id)
+    find_all_by merchantid: merchant_id
+  end
+
+  def find_all_by(status)
+    find_all_by status: status
+  end
+
+  def find_all_by(created_at)
+    find_all_by created_at: created_at
+  end
+
+  def find_all_by(updated_at)
+    find_all_by updated_at: updated_at
+  end
+
   def find_by_merchant_id(id)
     collection.find do |invoice|
       invoice.merchant_id == id
