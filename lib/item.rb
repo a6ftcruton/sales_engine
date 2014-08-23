@@ -10,7 +10,7 @@ class Item
 
   def initialize(repo, attributes = {})
     @id          = attributes[:id].to_i
-    @name        = attributes[:name]
+    @name        = attributes[:name].downcase
     @description = attributes[:description]
     @unit_price  = attributes[:unit_price]
     @merchant_id = attributes[:merchant_id].to_i
