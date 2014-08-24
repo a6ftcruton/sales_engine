@@ -27,4 +27,9 @@ class Item
     item_repo.find_merchant_by_merchant_id(merchant_id)
     #returns an instance of Merchant associated with this object
   end
+
+  def best_day
+    results = @item_repo.find_items_associated_with_invoice_id(self.id)
+    results.group_by { |invoice_item| invoice_item.created_at}
+  end
 end

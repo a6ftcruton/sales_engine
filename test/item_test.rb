@@ -27,4 +27,17 @@ class ItemsTest < Minitest::Test
     item = Item.new(nil, attributes)
     assert item.respond_to?(:updated_at)
   end
+
+  #Business Intelligence Tests
+  # returns the date with the most sales for the given item using the invoice date
+  # pass in item id to invoice_items, group the collection of results based
+  # on date, choose date with the most results
+  def test_it_takes_in_an_item_and_searches_invoice_date
+    engine = SalesEngine.new.startup
+    item_repo = engine.item_repo
+    items = item_repo.find_items_associated_with_invoice_id(id)
+
+    assert_equal "date", item.best_day
+  end
+
 end
