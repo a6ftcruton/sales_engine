@@ -1,9 +1,9 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/repo/merchant_repo'
+require_relative '../lib/repo/merchant_repository'
 require_relative '../lib/merchant'
 require_relative '../lib/sales_engine'
-require_relative '../lib/repo/invoice_repo'
+require_relative '../lib/repo/invoice_repository'
 
 class IntegrationTest < Minitest::Test
   attr_reader :engine
@@ -14,8 +14,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_merchant_and_invoice
     engine        = SalesEngine.new.startup
-    merchant_repo = engine.merchant_repo
-    merchant      = merchant_repo.collection.detect do |merchant|
+    merchant_repository = engine.merchant_repository
+    merchant      = merchant_repository.collection.detect do |merchant|
                       merchant.id == 1
                     end
     invoices      = merchant.invoices
@@ -25,8 +25,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_merchant_and_items
     engine        = SalesEngine.new.startup
-    merchant_repo = engine.merchant_repo
-    merchant      = merchant_repo.collection.detect do |merchant|
+    merchant_repository = engine.merchant_repository
+    merchant      = merchant_repository.collection.detect do |merchant|
                     merchant.id == 1
                   end
     items = merchant.items
@@ -36,8 +36,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_customers_and_invoices
     engine        = SalesEngine.new.startup
-    customer_repo = engine.customer_repo
-    customer      = customer_repo.collection.detect do |customer|
+    customer_repository = engine.customer_repository
+    customer      = customer_repository.collection.detect do |customer|
                     customer.id == 2
                   end
     invoices = customer.invoices
@@ -69,8 +69,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoice_item_and_item
     engine            = SalesEngine.new.startup
-    invoice_item_repo = engine.invoice_item_repo
-    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+    invoice_item_repository = engine.invoice_item_repository
+    invoice_item      = invoice_item_repository.collection.detect do |invoice_item|
                           invoice_item.item_id == 1
                         end
     item              = invoice_item.item
@@ -81,8 +81,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoice_item_and_invoice
     engine            = SalesEngine.new.startup
-    invoice_item_repo = engine.invoice_item_repo
-    invoice_item      = invoice_item_repo.collection.detect do |invoice_item|
+    invoice_item_repository = engine.invoice_item_repository
+    invoice_item      = invoice_item_repository.collection.detect do |invoice_item|
                         invoice_item.invoice_id == 1
                       end
     invoice =        invoice_item.invoice
@@ -93,8 +93,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_item_and_invoice_items
     engine            = SalesEngine.new.startup
-    item_repo         = engine.item_repo
-    item              = item_repo.collection.find do |item|
+    item_repository         = engine.item_repository
+    item              = item_repository.collection.find do |item|
                           item.id == 1
                         end
     invoice_items     = item.invoice_items
@@ -104,8 +104,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_item_and_merchant
     engine            = SalesEngine.new.startup
-    item_repo         = engine.item_repo
-    item = item_repo.collection.detect do |item|
+    item_repository         = engine.item_repository
+    item = item_repository.collection.detect do |item|
       item.merchant_id == 1
     end
     merchant          = item.merchant
@@ -116,8 +116,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoice_and_items
     engine            = SalesEngine.new.startup
-    invoice_repo      = engine.invoice_repo
-    target_invoice           = invoice_repo.collection.detect do |invoice|
+    invoice_repository      = engine.invoice_repository
+    target_invoice           = invoice_repository.collection.detect do |invoice|
                         invoice.id == 1
                       end
     items           = target_invoice.items
@@ -127,8 +127,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoice_and_customer
     engine            = SalesEngine.new.startup
-    invoice_repo      = engine.invoice_repo
-    invoice           = invoice_repo.collection.detect do |invoice|
+    invoice_repository      = engine.invoice_repository
+    invoice           = invoice_repository.collection.detect do |invoice|
                         invoice.customer_id == 1
                       end
     customer          = invoice.customer
@@ -139,8 +139,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_invoice_and_merchant
     engine           = SalesEngine.new.startup
-    invoice_repo     = engine.invoice_repo
-    invoice          = invoice_repo.collection.find do |invoice|
+    invoice_repository     = engine.invoice_repository
+    invoice          = invoice_repository.collection.find do |invoice|
                          invoice.merchant_id == 31
                        end
     merchant         = invoice.merchant
@@ -151,8 +151,8 @@ class IntegrationTest < Minitest::Test
 
   def test_relationship_between_transaction_and_invoice
     engine           = SalesEngine.new.startup
-    transaction_repo = engine.transaction_repo
-    transaction      = transaction_repo.collection.detect do |transaction|
+    transaction_repository = engine.transaction_repository
+    transaction      = transaction_repository.collection.detect do |transaction|
                         transaction.invoice_id == 1
                       end
     invoice          = transaction.invoice

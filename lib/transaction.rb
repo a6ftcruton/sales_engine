@@ -6,7 +6,7 @@ class Transaction
               :result,
               :created_at,
               :updated_at,
-              :transaction_repo
+              :transaction_repository
 
   def initialize(repo, attributes = {})
     @id                      = attributes[:id].to_i
@@ -16,10 +16,10 @@ class Transaction
     @result                  = attributes[:result]
     @created_at              = attributes[:created_at]
     @updated_at              = attributes[:updated_at]
-    @transaction_repo        = repo
+    @transaction_repository        = repo
   end
 
   def invoice
-    transaction_repo.find_invoice_by_invoice_id(invoice_id)
+    transaction_repository.find_invoice_by_invoice_id(invoice_id)
   end
 end
