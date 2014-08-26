@@ -8,12 +8,12 @@ class Invoice
               :invoice_repository
 
   def initialize(repo, attributes={})
-    @id            = attributes[:id].to_i
-    @customer_id   = attributes[:customer_id].to_i
-    @merchant_id   = attributes[:merchant_id].to_i
-    @status        = attributes[:status]
-    @created_at    = attributes[:created_at]
-    @updated_at    = attributes[:updated_at]
+    @id                  = attributes[:id].to_i
+    @customer_id         = attributes[:customer_id].to_i
+    @merchant_id         = attributes[:merchant_id].to_i
+    @status              = attributes[:status]
+    @created_at          = attributes[:created_at]
+    @updated_at          = attributes[:updated_at]
     @invoice_repository  = repo
   end
 
@@ -26,7 +26,6 @@ class Invoice
   end
 
   def items
-    # invoice_repository.find_items_associated_with_invoice_id(id)
     item_ids = invoice_items.map do |invoice_item|
                 invoice_item.item_id
               end
@@ -38,7 +37,6 @@ class Invoice
 
   def customer
     invoice_repository.find_customer_by_customer_id(customer_id)
-    # returns an instance of Customer associated with this object
   end
 
   def merchant

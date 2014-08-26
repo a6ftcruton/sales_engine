@@ -1,7 +1,3 @@
-require 'csv'
-require_relative '../transaction'
-require_relative '../list_search'
-
 class TransactionRepo
   include ListSearch
 
@@ -11,10 +7,6 @@ class TransactionRepo
   def initialize(engine, transaction_data)
     @collection   = transaction_data.map { |row| Transaction.new(self, row) }
     @sales_engine = engine
-  end
-
-  def inspect
-    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)

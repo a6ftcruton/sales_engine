@@ -1,7 +1,3 @@
-require 'csv'
-require_relative '../invoice_item'
-require_relative '../list_search'
-
 class InvoiceItemRepo
   include ListSearch
 
@@ -11,10 +7,6 @@ class InvoiceItemRepo
   def initialize(engine, invoice_items_data)
     @collection   = invoice_items_data.map { |row| InvoiceItem.new(self, row) }
     @sales_engine = engine
-  end
-
-  def inspect
-    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)

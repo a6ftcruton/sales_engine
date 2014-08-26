@@ -1,7 +1,3 @@
-require 'csv'
-require_relative '../customer'
-require_relative '../list_search'
-
 class CustomerRepo
   include ListSearch
 
@@ -11,10 +7,6 @@ class CustomerRepo
   def initialize(engine, customers_data)
     @collection   = customers_data.map { |row| Customer.new(self, row) }
     @sales_engine = engine
-  end
-
-  def inspect
-    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)

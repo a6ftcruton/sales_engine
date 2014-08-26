@@ -1,7 +1,3 @@
-require 'csv'
-require_relative '../invoice'
-require_relative '../list_search'
-
 class InvoiceRepo
   include ListSearch
 
@@ -9,12 +5,8 @@ class InvoiceRepo
               :sales_engine
 
   def initialize(engine, invoices_data)
-    @collection = invoices_data.map { |row| Invoice.new(self, row) }
+    @collection   = invoices_data.map { |row| Invoice.new(self, row) }
     @sales_engine = engine
-  end
-
-  def inspect
-    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)
@@ -64,19 +56,7 @@ class InvoiceRepo
   def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
-
-  # def find_by_merchant_id(id)
-  #   collection.find do |invoice|
-  #     invoice.merchant_id == id
-  #   end
-  # end
-  #
-  # def find_all_by_merchant_id(id)
-  #   collection.find_all do |invoice|
-  #     invoice.merchant_id == id
-  #   end
-  # end
-
+  
   def find_invoices_by_customer_id(id)
     collection.find_all do |invoice|
       invoice.customer_id == id
