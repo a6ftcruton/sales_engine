@@ -13,6 +13,10 @@ class InvoiceItemRepo
     @sales_engine = engine
   end
 
+  def inspect
+    "<# #{self.class} #{collection.count} rows >"
+  end
+
   def find_by_id(id)
     find_by id: id
   end
