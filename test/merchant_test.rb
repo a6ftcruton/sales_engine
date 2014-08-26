@@ -21,7 +21,7 @@ class MerchantTest < Minitest::Test
   end
 
   def test_it_stores_merchant_name
-    assert_equal "schroeder-jerde", merchant.name
+    assert_equal "Schroeder-Jerde", merchant.name
   end
 
   def test_it_stores_merchant_created_at
