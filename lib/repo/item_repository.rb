@@ -26,7 +26,8 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-    find_by unit_price: unit_price
+    find_by unit_price: (unit_price)
+    unit_price = BigDecimal.new(unit_price).round(2)
   end
 
   def find_by_merchant_id(merchant_id)
@@ -68,18 +69,6 @@ class ItemRepo
   def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
-
-  # def find_by_merchant_id(id)
-  #   collection.find do |item|
-  #     item.merchant_id == id
-  #   end
-  # end
-  #
-  # def find_all_by_merchant_id(id)
-  #   collection.find_all do |item|
-  #     item.merchant_id == id
-  #   end
-  # end
 
   def find_item_by_item_id(item_id)
     collection.find do |item|

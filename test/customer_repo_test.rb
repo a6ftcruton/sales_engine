@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/sales_engine'
-require_relative '../lib/repo/customer_repo'
+require_relative '../lib/repo/customer_repository'
 
 class CustomerRepoTest < Minitest::Test
   def attributes
@@ -15,7 +15,7 @@ class CustomerRepoTest < Minitest::Test
   end
 
   def self.repo
-    @repo ||= SalesEngine.new.startup.customer_repo
+    @repo ||= SalesEngine.new.startup.customer_repository
   end
 
   def repo

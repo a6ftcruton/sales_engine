@@ -1,10 +1,10 @@
 require 'minitest/autorun'
 require 'minitest/pride'
-require_relative '../lib/repo/invoice_repo'
+require_relative '../lib/repo/invoice_repository'
 
 class InvoiceRepoTest < Minitest::Test
   def self.repo
-    @repo ||= SalesEngine.new.startup.invoice_repo
+    @repo ||= SalesEngine.new.startup.invoice_repository
   end
 
   def repo
