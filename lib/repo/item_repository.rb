@@ -1,4 +1,5 @@
 require 'csv'
+require 'bigdecimal'
 require_relative '../item'
 require_relative '../list_search'
 
@@ -11,6 +12,10 @@ class ItemRepo
   def initialize(engine, item_information)
     @collection = item_information.map { |row| Item.new(self, row) }
     @sales_engine = engine
+  end
+
+  def inspect
+    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)
@@ -26,8 +31,11 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-    find_by unit_price: (unit_price)
-    unit_price = BigDecimal.new(unit_price).round(2)
+    # require 'pry'
+    # binding.pry
+     p unit_price
+     find_by unit_price: unit_price
+    # unit_price = BigDecimal.new(unit_price).round(2)
   end
 
   def find_by_merchant_id(merchant_id)
