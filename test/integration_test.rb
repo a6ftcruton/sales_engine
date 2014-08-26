@@ -12,6 +12,12 @@ class IntegrationTest < Minitest::Test
     @engine = SalesEngine.new.startup
   end
 
+  def test_startup_loads_test_files
+    refute engine
+    engine = SalesEngine.new.startup
+    assert engine
+  end
+
   def test_relationship_between_merchant_and_invoice
     engine              = SalesEngine.new.startup
     merchant_repository = engine.merchant_repository

@@ -22,13 +22,8 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-<<<<<<< HEAD
     formatted_price = unit_price.to_f
     find_by unit_price: formatted_price
-=======
-     formatted_price = unit_price.to_f
-     find_by unit_price: formatted_price
->>>>>>> 635189bc3b1e9940afb18d5c1e6678aace21d45a
   end
 
   def find_by_merchant_id(merchant_id)
