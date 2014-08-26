@@ -24,15 +24,4 @@ class Merchant
   def items
     @merchant_repository.find_items_by_merchant_id(id)
   end
-
-  # returns the total revenue for that merchant across all transactions
-  def revenue
-    # transactions = invoices.map do |invoice|
-    #       invoice.transactions.select do |transaction|
-    #   require 'pry'
-    #   binding.pry
-    #           transaction.result == "success"
-    #       end
-    # end
-  end
 end
