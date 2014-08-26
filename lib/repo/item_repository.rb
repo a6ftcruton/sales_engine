@@ -23,7 +23,7 @@ class ItemRepo
   end
 
   def find_by_name(name)
-    find_by name: name
+    p find_by name: name
   end
 
   def find_by_description(description)
@@ -31,11 +31,8 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-    # require 'pry'
-    # binding.pry
-     p unit_price
-     find_by unit_price: unit_price
-    # unit_price = BigDecimal.new(unit_price).round(2)
+     p formatted_price = unit_price.to_f
+     find_by unit_price: formatted_price
   end
 
   def find_by_merchant_id(merchant_id)

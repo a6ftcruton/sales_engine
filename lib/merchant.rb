@@ -21,13 +21,13 @@ class Merchant
     @merchant_repository.find_items_by_merchant_id(id)
   end
 
-  def revenue
-    #find_all_invoices associeated with merchant
-    #only collect invoices for which there are successful transactions
-    #get associated invoice items for the successful invoice transactions
-    #unit price and total sold are there so the figure total amount
-    invoices.group_by do |invoice|
-      invoice.status
-    end
-  end
+  # def revenue
+  #   #find_all_invoices associeated with merchant
+  #   #only collect invoices for which there are successful transactions
+  #   #get associated invoice items for the successful invoice transactions
+  #   #unit price and total sold are there so the figure total amount
+  #   invoices.group_by do |invoice|
+  #     invoice.status
+  #   end
+  # end
 end
