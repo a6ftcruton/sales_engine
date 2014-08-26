@@ -16,7 +16,7 @@ class Transaction
     @result                  = attributes[:result]
     @created_at              = attributes[:created_at]
     @updated_at              = attributes[:updated_at]
-    @transaction_repository        = repo
+    @transaction_repository  = repo
   end
 
   def invoice

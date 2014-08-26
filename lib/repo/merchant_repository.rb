@@ -1,7 +1,3 @@
-require 'csv'
-require_relative '../merchant'
-require_relative '../list_search'
-
 class MerchantRepo
   include ListSearch
 
@@ -11,10 +7,6 @@ class MerchantRepo
   def initialize(engine, merchant_data)
     @collection   = merchant_data.map { |row| Merchant.new(self, row) }
     @sales_engine = engine
-  end
-
-  def inspect
-    "<# #{self.class} #{collection.count} rows >"
   end
 
   def find_by_id(id)

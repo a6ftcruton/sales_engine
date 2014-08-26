@@ -1,6 +1,7 @@
 gem 'minitest'
 require 'minitest/autorun'
 require 'minitest/pride'
-Dir["./lib/*.rb"].each { |file| require "#{file}" }
+require 'simplecov'
+SimpleCov.start
 
-#lib_directory = File.expand_path('../lib', __FILE__)
+Dir["./lib/*.rb"].each { |file| require "#{file}" }
