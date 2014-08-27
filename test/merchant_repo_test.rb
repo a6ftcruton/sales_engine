@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/repo/merchant_repository'
+require_relative 'test_helper'
 
 class MerchantRepoTest < Minitest::Test
 

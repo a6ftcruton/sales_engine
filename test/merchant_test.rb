@@ -36,7 +36,7 @@ class MerchantTest < Minitest::Test
     engine   = SalesEngine.new.startup
     merchant = engine.find_merchant_by_merchant_id(1)
 
-    assert_equal 56612301, merchant.revenue.to_i
+    assert_equal 528774, merchant.revenue.to_i
   end
 
   def test_it_finds_revenue_by_date

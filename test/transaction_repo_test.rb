@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/repo/transaction_repository'
+require_relative 'test_helper'
 
 class TransactionRepoTest < Minitest::Test
   def self.repo
@@ -10,4 +8,8 @@ class TransactionRepoTest < Minitest::Test
   def repo
     self.class.repo
   end
+
+  #find_by_id
+
+  #find_by_
 end

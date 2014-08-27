@@ -26,7 +26,6 @@ class Invoice
   end
 
   def paid?
-    # any transaction result == success
     transactions.any? { |attempt| attempt.result == "success"}
   end
 

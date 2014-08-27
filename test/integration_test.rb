@@ -1,9 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/repo/merchant_repository'
-require_relative '../lib/merchant'
-require_relative '../lib/sales_engine'
-require_relative '../lib/repo/invoice_repository'
+require_relative 'test_helper'
 
 class IntegrationTest < Minitest::Test
   attr_reader :engine

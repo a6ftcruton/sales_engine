@@ -1,17 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/sales_engine'
-require_relative '../lib/repo/invoice_item_repository'
+require_relative 'test_helper'
 
 class InvoiceItemRepoTest < Minitest::Test
-
-#id
-#quantity
-#unit_price
-#created_at
-#updated_at
-#item_id
-#invoice_id
 
   def self.repo
     @repo ||= SalesEngine.new.startup.invoice_item_repository

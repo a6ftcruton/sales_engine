@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/repo/item_repository'
+require_relative 'test_helper'
 
 class ItemRepoTest < Minitest::Test
   def self.repo

@@ -1,7 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/sales_engine'
-require_relative '../lib/list_search'
+require_relative 'test_helper'
 
 class DummyList
   include ListSearch
@@ -31,6 +28,11 @@ class ListSearchTest < Minitest::Test
 
   def setup
     @dl = DummyList.new
+  end
+
+  def test_it_overwrites_inspect_method_and_returns_row_count_of_self
+    refute_equal "main" || "Object", ListSearch.inspect
+    assert_equal "ListSearch", ListSearch.inspect
   end
 
   def test_it_finds_all

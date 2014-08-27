@@ -27,10 +27,4 @@ class Item
   def merchant
     item_repository.find_merchant_by_merchant_id(merchant_id)
   end
-
-  private
-
-  def add_cents(unit_price)
-    unit_price.to_f.*(0.01).round(2)
-  end
 end
