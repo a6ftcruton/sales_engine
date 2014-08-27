@@ -16,9 +16,4 @@ class SalesEngineTest < Minitest::Test
     assert se.respond_to?(:merchant_repository)
     assert se.respond_to?(:transaction_repository)
   end
-
-  def test_it_opens_a_csv
-
-  end
-
 end

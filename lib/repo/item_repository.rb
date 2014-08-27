@@ -22,10 +22,13 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-    # formatted_price = unit_price.to_f
-    # find_by unit_price: formatted_price
-    # binding.pry
-    find_by unit_price: BigDecimal(unit_price).to_f
+    all.find  { |record| format_dec(record.unit_price) == unit_price }
+  end
+
+  # or handle this in item.rb ?? ^-- that too ??
+  def format_dec(unit_price)
+    decimal = unit_price.insert(-3, '.')
+    BigDecimal.new(decimal)
   end
 
   def find_by_merchant_id(merchant_id)

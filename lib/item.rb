@@ -12,8 +12,8 @@ class Item
     @id                = attributes[:id].to_i
     @name              = attributes[:name]
     @description       = attributes[:description]
-    # @unit_price        = add_cents(attributes[:unit_price])
-    @unit_price        = attributes[:unit_price].to_i
+    # @unit_price        = format_unit_price(attributes[:unit_price])
+    @unit_price        = attributes[:unit_price]
     @merchant_id       = attributes[:merchant_id].to_i
     @created_at        = attributes[:created_at]
     @updated_at        = attributes[:updated_at]
@@ -27,4 +27,11 @@ class Item
   def merchant
     item_repository.find_merchant_by_merchant_id(merchant_id)
   end
+
+  # private
+  # ?? Do you like / need it here or elsewhere ?? 
+  #   def format_unit_price(unit_price)
+  #     decimal = unit_price.insert(-3, '.')
+  #     BigDecimal.new(decimal)
+  #   end
 end
