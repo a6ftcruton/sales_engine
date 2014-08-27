@@ -56,7 +56,6 @@ class InvoiceRepo
   def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
-  
   def find_invoices_by_customer_id(id)
     collection.find_all do |invoice|
       invoice.customer_id == id
@@ -92,6 +91,6 @@ class InvoiceRepo
   end
 
   def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
-    @sales_engine.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+    @sales_engine.find_all_invoices_by_merchant_id(merchant_id)
   end
 end

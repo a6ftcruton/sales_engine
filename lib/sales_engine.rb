@@ -22,25 +22,25 @@ class SalesEngine
               :item_repository,
               :merchant_repository,
               :transaction_repository,
-              :dir,
-              :ext
+              :dir
 
   def initialize(dir = "data")
     @dir = dir
   end
 
   def startup
-    csv = CSV.open("#{dir}/customers.csv", headers: true, header_converters: :symbol)
+    header_defaults = {headers: true, header_converters: :symbol}
+    csv = CSV.open("#{dir}/customers.csv", header_defaults)
     @customer_repository     = CustomerRepo.new(self, csv)
-    csv = CSV.open("#{dir}/invoice_items.csv", headers: true, header_converters: :symbol)
+    csv = CSV.open("#{dir}/invoice_items.csv", header_defaults)
     @invoice_item_repository = InvoiceItemRepo.new(self, csv)
-    csv = CSV.open("#{dir}/invoices.csv", headers: true, header_converters: :symbol)
+    csv = CSV.open("#{dir}/invoices.csv", header_defaults)
     @invoice_repository      = InvoiceRepo.new(self, csv)
-    csv = CSV.open("#{dir}/items.csv", headers: true, header_converters: :symbol)
+    csv = CSV.open("#{dir}/items.csv", header_defaults)
     @item_repository         = ItemRepo.new(self, csv)
-    csv = CSV.open("#{dir}/merchants.csv", headers: true, header_converters: :symbol)
+    csv = CSV.open("#{dir}/merchants.csv", header_defaults)
     @merchant_repository     = MerchantRepo.new(self, csv)
-    csv = CSV.open("#{dir}/transactions.csv", headers: true, header_converters: :symbol)
+    csv = CSV.open("#{dir}/transactions.csv", header_defaults)
     @transaction_repository  = TransactionRepo.new(self, csv)
     self
    end
@@ -98,6 +98,6 @@ class SalesEngine
   end
 
   def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
-    merchant_repository.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+    merchant_repository.find_all_invoices_by_merchant_id(merchant_id)
   end
 end

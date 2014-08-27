@@ -46,7 +46,7 @@ class Invoice
   end
 
   def merchant
-    @invoice_repository.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+    @invoice_repository.find_all_invoices_by_merchant_id(merchant_id)
   end
 
   def total
