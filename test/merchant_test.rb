@@ -32,17 +32,14 @@ class MerchantTest < Minitest::Test
     assert merchant.respond_to?(:updated_at)
   end
 
-  # def test_it_returns_total_revenue_for_given_merchant
-  #   engine        = SalesEngine.new.startup
-  #   merchant_repo = engine.merchant_repository
-  #   merchant      = merchant_repo.collection.detect do |merchant|
-  #                     merchant.id == 1
-  #                   end
-  #
-  #   revenue     = merchant.revenue
-  #
-  #   refute_nil   revenue
-  #   # assert_equal Transaction, revenue.class
-  # end
+  def test_it_has_revenue
+    engine   = SalesEngine.new.startup
+    merchant = engine.find_merchant_by_merchant_id(1)
 
+    assert_equal 56612301, merchant.revenue.to_i
+  end
+
+  def test_it_finds_revenue_by_date
+
+  end
 end

@@ -25,14 +25,21 @@ class Invoice
     @invoice_repository.find_transactions_by_invoice_id(id)
   end
 
+  def paid?
+    # any transaction result == success
+    transactions.any? { |attempt| attempt.result == "success"}
+  end
+
   def items
     item_ids = invoice_items.map do |invoice_item|
-                invoice_item.item_id
-              end
+      invoice_item.item_id
+    end
+
     items = item_ids.map do |item_id|
-       invoice_repository.find_items_associated_with_invoice_id(item_id)
-     end
-     items
+      invoice_repository.find_items_associated_with_invoice_id(item_id)
+    end
+
+    items
   end
 
   def customer
@@ -41,5 +48,13 @@ class Invoice
 
   def merchant
     @invoice_repository.find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+  end
+
+  def total
+    if paid?
+      invoice_items.map(&:total_price).reduce(:+)
+    else
+      0
+    end
   end
 end

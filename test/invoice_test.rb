@@ -1,9 +1,6 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/invoice'
+require_relative 'test_helper'
 
 class InvoiceTest < Minitest::Test
-
   def attributes
     {
       id:           8,
@@ -13,6 +10,13 @@ class InvoiceTest < Minitest::Test
       created_at:   "2012-03-27 14:53:59 UTC",
       updated_at:   "2012-03-27 14:53:59 UTC"
     }
+  end
+
+  def invoice_item_data
+    [
+      { invoice_id: 8, quantity: 100, unit_price: 5 },
+      { invoice_id: 8, quantity: 500, unit_price: 10}
+    ]
   end
 
   def test_it_stores_merchant_id
@@ -25,4 +29,10 @@ class InvoiceTest < Minitest::Test
     assert invoice.respond_to?(:status)
   end
 
+  def test_it_has_a_total
+    repo    = InvoiceItemRepo.new(nil, invoice_item_data)
+    invoice = Invoice.new(repo, attributes)
+
+    assert_equal 5500, invoice.total.to_i
+  end
 end

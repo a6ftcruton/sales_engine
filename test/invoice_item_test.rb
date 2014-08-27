@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-require 'minitest/pride'
-require_relative '../lib/invoice_item'
+require_relative 'test_helper'
 
 class InvoiceItemTest < Minitest::Test
 
@@ -26,4 +24,8 @@ class InvoiceItemTest < Minitest::Test
     assert_equal 13655, invoice_item.unit_price
   end
 
+  def test_it_has_a_total_price
+    invoice_item = InvoiceItem.new(nil, attributes)
+    assert_equal 68275, invoice_item.total_price
+  end
 end
