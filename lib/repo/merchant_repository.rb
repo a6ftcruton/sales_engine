@@ -60,4 +60,8 @@ class MerchantRepo
       merchant.id == merchant_id
     end
   end
+
+  def revenue(date=nil)
+    all.reduce(0) { |sum, merchant| sum + merchant.revenue(date)  }
+  end
 end

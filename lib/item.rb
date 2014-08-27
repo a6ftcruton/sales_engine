@@ -29,9 +29,9 @@ class Item
   end
 
   # private
-  # ?? Do you like / need it here or elsewhere ?? 
-  #   def format_unit_price(unit_price)
-  #     decimal = unit_price.insert(-3, '.')
-  #     BigDecimal.new(decimal)
-  #   end
+  # ?? Do you like / need it here or elsewhere ??
+    # def format_unit_price(unit_price)
+    #   decimal = unit_price.insert(-3, '.')
+    #   BigDecimal.new(decimal)
+    # end
 end
