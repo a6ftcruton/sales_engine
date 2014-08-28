@@ -26,29 +26,17 @@
   ```
   -note: this will change the directory, but you will manually need to change the
   name of each file if they do not match the following naming conventions:
-  ```
-  /customers.csv
-  ```
+  ```/customers.csv```
 
-  ```
-  /invoice_items.csv
-  ```
+  ```/invoice_items.csv```
 
-  ```
-  /invoices.csv
-  ```
+  ```/invoices.csv```
 
-  ```
-  /items.csv
-  ```
+  ```/items.csv```
 
-  ```
-  /merchants.csv
-  ```
+  ```/merchants.csv```
 
-  ```
-  /transactions.csv
-  ```
+  ```/transactions.csv```
 
 ###Relationships
   *Sales Engine provides the following relationships:*
