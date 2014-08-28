@@ -50,15 +50,11 @@ class MerchantRepo
   end
 
   def find_merchant_by_merchant_id(id)
-    collection.find do |merchant|
-      merchant.id == id
-    end
+    collection.find { |merchant| merchant.id == id }
   end
 
   def find_all_invoices_by_merchant_id(merchant_id)
-    collection.find do |merchant|
-      merchant.id == merchant_id
-    end
+    collection.find { |merchant| merchant.id == merchant_id }
   end
 
   def revenue(date=nil)

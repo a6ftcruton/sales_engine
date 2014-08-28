@@ -66,9 +66,7 @@ class InvoiceItemRepo
   end
 
   def find_invoice_items_by_invoice_id(id)
-    collection.find_all do |invoice_item|
-      invoice_item.invoice_id == id
-    end
+    collection.find_all  { |invoice_item| invoice_item.invoice_id == id }
   end
 
   def find_item_by_item_id(item_id)
@@ -80,8 +78,6 @@ class InvoiceItemRepo
   end
 
   def find_invoice_item_by_item_id(id)
-    collection.find_all do |invoice_item|
-      invoice_item.item_id == id
-    end
+    collection.find_all { |invoice_item| invoice_item.item_id == id }
   end
 end

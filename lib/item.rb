@@ -20,7 +20,7 @@ class Item
   end
 
   def invoice_items
-    @item_repository.find_invoice_item_by_item_id(id)
+    item_repository.find_invoice_item_by_item_id(id)
   end
 
   def merchant

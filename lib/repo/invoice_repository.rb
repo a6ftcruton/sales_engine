@@ -56,10 +56,9 @@ class InvoiceRepo
   def find_all_by_updated_at(updated_at)
     find_all_by updated_at: updated_at
   end
+
   def find_invoices_by_customer_id(id)
-    collection.find_all do |invoice|
-      invoice.customer_id == id
-    end
+    collection.find_all { |invoice| invoice.customer_id == id }
   end
 
   def find_invoice_items_by_invoice_id(id)
@@ -71,9 +70,7 @@ class InvoiceRepo
   end
 
   def find_invoice_by_invoice_id(invoice_id)
-    collection.find do |invoice|
-      invoice.id == invoice_id
-    end
+    collection.find { |invoice| invoice.id == invoice_id }
   end
 
   def find_customer_by_customer_id(customer_id)
@@ -81,9 +78,7 @@ class InvoiceRepo
   end
 
   def find_invoice_by_invoice_id(invoice_id)
-    collection.find do |invoice|
-      invoice.id == invoice_id
-    end
+    collection.find { |invoice| invoice.id == invoice_id }
   end
 
   def find_items_associated_with_invoice_id(id)

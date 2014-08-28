@@ -66,9 +66,7 @@ class TransactionRepo
   end
 
   def find_transactions_by_invoice_id(id)
-    collection.find_all do |transaction|
-      transaction.invoice_id == id
-    end
+    collection.find_all { |transaction| transaction.invoice_id == id }
   end
 
   def find_invoice_by_invoice_id(invoice_id)

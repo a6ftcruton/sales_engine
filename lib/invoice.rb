@@ -18,11 +18,11 @@ class Invoice
   end
 
   def invoice_items
-    @invoice_repository.find_invoice_items_by_invoice_id(id)
+    invoice_repository.find_invoice_items_by_invoice_id(id)
   end
 
   def transactions
-    @invoice_repository.find_transactions_by_invoice_id(id)
+    invoice_repository.find_transactions_by_invoice_id(id)
   end
 
   def paid?
@@ -46,7 +46,7 @@ class Invoice
   end
 
   def merchant
-    @invoice_repository.find_all_invoices_by_merchant_id(merchant_id)
+    invoice_repository.find_all_invoices_by_merchant_id(merchant_id)
   end
 
   def total

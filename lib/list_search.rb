@@ -1,6 +1,6 @@
 module ListSearch
   def all
-    self.collection
+    collection
   end
 
   def random
