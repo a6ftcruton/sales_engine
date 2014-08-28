@@ -83,7 +83,4 @@ class TransactionRepoTest < Minitest::Test
 
     assert_empty repo.find_all_by_updated_at("2012-03-28 13:51:11 UTC")
   end
-
-
-
 end

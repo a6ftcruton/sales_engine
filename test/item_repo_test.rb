@@ -7,7 +7,7 @@ class ItemRepoTest < Minitest::Test
     [
       {id: 1, name: "Item Pizza", merchant_id: 100, unit_price: "22238"},
       {id: 2, name: "Item Sandwich", merchant_id: 1233, unit_price: "12345" },
-      {id: 1, name: "Item Boat", description: "Family Fun" },
+      {id: 1, name: "Item Boat", description: "Family Fun", unit_price: "56" },
       {id: 2, created_at: "2012-03-27 14:53:59 UTC", updated_at: "2012-03-27 14:53:59 UTC"},
       {id: 11, created_at: "2012-03-27 14:53:59 UTC", updated_at: "2012-05-21 18:23:19 UTC"}
     ]
@@ -65,7 +65,12 @@ class ItemRepoTest < Minitest::Test
     repo.find_all_by_updated_at("2012-03-27 14:53:59 UTC").count
   end
 
-  # def test_it_finds_by_unit_price
-  #   assert_equal 123.45, repo.find_by_unit_price("12345")
-  # end
+  def test_it_formats_unit_price
+    assert_equal 123.45, repo.format_price("12345")
+    assert_equal 0.56, repo.format_price("56")
+  end
+
+  def test_it_finds_by_unit_price
+    assert repo.find_by_unit_price(123.45)
+  end
 end

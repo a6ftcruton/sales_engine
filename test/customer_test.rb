@@ -26,5 +26,4 @@ class CustomerTest < Minitest::Test
     customer = Customer.new(nil, attributes)
     assert_equal "Schroeder", customer.last_name
   end
-
 end

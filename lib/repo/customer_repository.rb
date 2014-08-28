@@ -34,15 +34,11 @@ class CustomerRepo
   end
 
   def find_all_by_first_name(name)
-    collection.find_all do |customer|
-      customer.first_name == name
-    end
+    collection.find_all { |customer| customer.first_name == name }
   end
 
   def find_all_by_last_name(name)
-    collection.find_all do |customer|
-      customer.last_name == name
-    end
+    collection.find_all { |customer| customer.last_name == name }
   end
 
   def find_all_by_created_at(created_at)
@@ -58,8 +54,6 @@ class CustomerRepo
   end
 
   def find_customer_by_customer_id(id)
-    collection.find do |customer|
-      customer.id == id
-    end
+    collection.find { |customer| customer.id == id }
   end
 end

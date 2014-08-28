@@ -97,7 +97,7 @@ class SalesEngine
     invoice_item_repository.find_invoice_item_by_item_id(id)
   end
 
-  def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+  def find_all_invoices_by_merchant_id(merchant_id)
     merchant_repository.find_all_invoices_by_merchant_id(merchant_id)
   end
 end

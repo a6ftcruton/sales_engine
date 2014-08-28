@@ -90,7 +90,7 @@ class InvoiceRepo
     sales_engine.find_items_associated_with_invoice_id(id)
   end
 
-  def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+  def find_all_invoices_by_merchant_id(merchant_id)
     @sales_engine.find_all_invoices_by_merchant_id(merchant_id)
   end
 end

@@ -55,7 +55,7 @@ class MerchantRepo
     end
   end
 
-  def find_all_invoices_by_merchant_id_matching_invoice_merchant_id(merchant_id)
+  def find_all_invoices_by_merchant_id(merchant_id)
     collection.find do |merchant|
       merchant.id == merchant_id
     end

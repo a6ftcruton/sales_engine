@@ -22,13 +22,17 @@ class ItemRepo
   end
 
   def find_by_unit_price(unit_price)
-    all.find  { |record| format_price(record.unit_price) == unit_price }
+    collection.find { |record| format_price(record.unit_price) == unit_price }
   end
 
-  # or handle this in item.rb ?? ^-- that too ??
   def format_price(unit_price)
-    decimal = unit_price.insert(-3, '.')
-    BigDecimal.new(decimal)
+    if unit_price.length < 5
+      decimal = unit_price.insert(-3, '.')
+      BigDecimal.new(decimal).to_f
+    else
+      decimal = unit_price.insert(-3, '.')
+      BigDecimal.new(decimal)
+    end
   end
 
   def find_by_merchant_id(merchant_id)
@@ -72,9 +76,7 @@ class ItemRepo
   end
 
   def find_item_by_item_id(item_id)
-    collection.find do |item|
-      item.id == item_id
-    end
+    collection.find { |item| item.id == item_id }
   end
 
   def find_merchant_by_merchant_id(merchant_id)
@@ -86,8 +88,6 @@ class ItemRepo
   end
 
   def find_items_associated_with_invoice_id(id)
-    collection.find do |item|
-      item.id == id
-    end
+    collection.find  { |item| item.id == id }
   end
 end
