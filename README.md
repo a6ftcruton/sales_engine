@@ -1,6 +1,6 @@
 #SalesEngine
 
-###Sales Engine: Because ActiveRecord wasn't built in a day
+###SalesEngine: Because ActiveRecord wasn't built in a day
 
   -used TDD to build a system that links several data files
 
@@ -8,7 +8,7 @@
 
   -focus on single responsibility principle and encapsulation
 
-###Using Sales Engine
+###Using SalesEngine
   **Entry point:**
   ```ruby
   engine = SalesEngine.new
