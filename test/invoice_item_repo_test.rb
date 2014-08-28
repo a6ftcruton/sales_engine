@@ -80,5 +80,4 @@ class InvoiceItemRepoTest < Minitest::Test
   def test_it_can_call_random_method_from_module
     assert repo.respond_to?(:random)
   end
-
 end

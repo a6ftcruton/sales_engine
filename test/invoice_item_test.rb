@@ -1,7 +1,8 @@
 require_relative 'test_helper'
 
 class InvoiceItemTest < Minitest::Test
-
+  attr_reader :invoice_item
+  
   def attributes
     {
     id:           1,
@@ -14,18 +15,19 @@ class InvoiceItemTest < Minitest::Test
     }
   end
 
+  def setup
+    @invoice_item = InvoiceItem.new(nil, attributes)
+  end
+
   def test_it_can_call_quantity_method
-    invoice_item = InvoiceItem.new(nil, attributes)
     assert invoice_item.respond_to?(:quantity)
   end
 
   def test_it_stores_unit_price
-    invoice_item = InvoiceItem.new(nil, attributes)
     assert_equal 13655, invoice_item.unit_price
   end
 
   def test_it_has_a_total_price
-    invoice_item = InvoiceItem.new(nil, attributes)
     assert_equal 68275, invoice_item.total_price
   end
 end

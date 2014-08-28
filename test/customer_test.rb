@@ -1,6 +1,7 @@
 require_relative 'test_helper'
 
 class CustomerTest < Minitest::Test
+  attr_reader :customer
 
   def attributes
     {
@@ -12,18 +13,19 @@ class CustomerTest < Minitest::Test
     }
   end
 
+  def setup
+    @customer = Customer.new(nil, attributes)
+  end
+
   def test_it_stores_id
-    customer = Customer.new(nil, attributes)
     assert_equal 1, customer.id
   end
 
   def test_it_stores_first_name
-    customer = Customer.new(nil, attributes)
     assert_equal "Jerde", customer.first_name
   end
 
   def test_it_stores_last_name
-    customer = Customer.new(nil, attributes)
     assert_equal "Schroeder", customer.last_name
   end
 end

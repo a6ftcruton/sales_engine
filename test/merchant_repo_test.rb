@@ -5,9 +5,24 @@ class MerchantRepoTest < Minitest::Test
 
   def merchant_repo_data
     [
-      {id: 1, name: "Schroeder-Jerde", created_at: "2012-03-27 14:53:59 UTC", updated_at: "2012-03-27 14:53:59 UTC"},
-      {id: 2, name: "Klein, Rempel", created_at: "2012-03-27 14:53:59 UTC", updated_at: "2012-03-27 14:53:59 UTC"},
-      {id: 3, name: "John", created_at: "2012-03-27 14:53:59 UTC", updated_at: "2012-03-27 14:53:59 UTC"}
+      {
+        id: 1,
+        name: "Schroeder-Jerde",
+        created_at: "2012-03-27 14:53:59 UTC",
+        updated_at: "2012-03-27 14:53:59 UTC"
+      },
+      {
+        id: 2,
+        name: "Klein, Rempel",
+        created_at: "2012-03-27 14:53:59 UTC",
+        updated_at: "2012-03-27 14:53:59 UTC"
+      },
+      {
+        id: 3,
+        name: "John",
+        created_at: "2012-03-27 14:53:59 UTC",
+        updated_at: "2012-03-27 14:53:59 UTC"
+      }
     ]
   end
 
@@ -52,5 +67,4 @@ class MerchantRepoTest < Minitest::Test
     date = Date.parse("2012-03-27 14:53:59 UTC")
     assert_equal 3, repo.find_all_by_updated_at(date).count
   end
-
 end

@@ -17,9 +17,9 @@ class DummyObject
   attr_accessor :name, :location, :taste
 
   def initialize(name, location, taste)
-    @name = name
+    @name     = name
     @location = location
-    @taste = taste
+    @taste    = taste
   end
 end
 
