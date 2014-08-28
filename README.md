@@ -26,7 +26,10 @@
   ```
   -note: this will change the directory, but you will manually need to change the
   name of each file if they do not match the following naming conventions:
-  ```/customers.csv```
+
+  ```
+  /customers.csv
+  ```
 
   ```
   /invoice_items.csv
