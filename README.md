@@ -9,17 +9,17 @@
   -focus on single responsibility principle and encapsulation
 
 ###Using Sales Engine
-  *Entry point:*
+  **Entry point:**
   ```ruby
   engine = SalesEngine.new
   ```
-  *Load default data:*
+  **Load default data:**
   ```ruby
   engine.startup
   ```
   - by default, `engine.startup` will load and parse the built-in csv files
 
-  *Load data from alternate directory*
+  **Load data from alternate directory**
   - you may pass an optional argument to Sales Engine upon initialize:
   ```ruby
   engine = SalesEngine.new(my_directory)
@@ -29,24 +29,29 @@
   ```
   /customers.csv
   ```
+
   ```
   /invoice_items.csv
   ```
+
   ```
   /invoices.csv
   ```
+
   ```
   /items.csv
   ```
+
   ```
   /merchants.csv
   ```
+
   ```
   /transactions.csv
   ```
 
 ###Relationships
-  #####Sales Engine provides the following relationships:
+  *Sales Engine provides the following relationships:*
 
 #####Merchant
 
